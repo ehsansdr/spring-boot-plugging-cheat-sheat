@@ -81,6 +81,14 @@ class StudentRepositoryTest {
     }
 
     @Test
+    public void printGuardianMobileBaseOnMobile(){
+        List<Student> students =
+                studentRepository.user();//self added
+
+        System.out.println(students);
+    }
+
+    @Test
     public void printAllStudent(){
         List<Student> studentList = studentRepository.findAll();
 
