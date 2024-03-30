@@ -54,8 +54,12 @@ class StudentRepositoryTest {
     public void printStudentByFirstName(){
         List<Student> students =
                 studentRepository.findByFirstName("mmd");//self added
+
+
         System.out.println("**************************************************");
+        System.out.println("--------------------------------------------------");
         System.out.println("\n" + students + "\n");
+        System.out.println("--------------------------------------------------");
         System.out.println("**************************************************");
     }
 
@@ -71,7 +75,9 @@ class StudentRepositoryTest {
         List<Student> students =
                 studentRepository.findByLastName("mmdi nia");//self added
         System.out.println("**************************************************");
+        System.out.println("--------------------------------------------------");
         System.out.println(students);
+        System.out.println("--------------------------------------------------");
         System.out.println("**************************************************");
     }
 
@@ -80,7 +86,9 @@ class StudentRepositoryTest {
         List<Student> students =
                 studentRepository.findByFirstNameContaining("mm");//self added
         System.out.println("**************************************************");
+        System.out.println("--------------------------------------------------");
         System.out.println(students);
+        System.out.println("--------------------------------------------------");
         System.out.println("**************************************************");
 
     }
@@ -89,7 +97,9 @@ class StudentRepositoryTest {
         List<Student> students =
                 studentRepository.findByGuardianName("akbar rahimi nia");//self added
         System.out.println("**************************************************");
+        System.out.println("--------------------------------------------------");
         System.out.println("\n" + students + "\n");
+        System.out.println("--------------------------------------------------");
         System.out.println("**************************************************");
 
     }
@@ -100,7 +110,9 @@ class StudentRepositoryTest {
                 studentRepository.showMeAllRecordOfStudent();//self added
 
         System.out.println("**************************************************");
-        System.out.println("\n" + students + "\n");
+        System.out.println("--------------------------------------------------");
+        System.out.println("\n" + students);
+        System.out.println("--------------------------------------------------");
         System.out.println("**************************************************");
     }
 
@@ -109,7 +121,9 @@ class StudentRepositoryTest {
         List<Student> studentList = studentRepository.findAll();
 
         System.out.println("**************************************************");
-        System.out.println("studentList : " + "\n" + studentList + "\n");
+        System.out.println("--------------------------------------------------");
+        System.out.println("studentList : " + "\n" + studentList);
+        System.out.println("--------------------------------------------------");
         System.out.println("**************************************************");
     }
     @Test
@@ -117,7 +131,9 @@ class StudentRepositoryTest {
         Student student = studentRepository.getStudentByEmailAddress("ehsan1234@gamol.com");
 
         System.out.println("**************************************************");
-        System.out.println("\n" + student + "\n");
+        System.out.println("--------------------------------------------------");
+        System.out.println(student);
+        System.out.println("--------------------------------------------------");
         System.out.println("**************************************************");
     }
 
@@ -126,7 +142,9 @@ class StudentRepositoryTest {
         List<String> student = studentRepository.showMeAllRecordOfFirstName();
 
         System.out.println("**************************************************");
-        System.out.println("\n" + student + "\n");
+        System.out.println("--------------------------------------------------");
+        System.out.println(student);
+        System.out.println("--------------------------------------------------");
         System.out.println("**************************************************");
     }
 
@@ -135,7 +153,29 @@ class StudentRepositoryTest {
         List<String> student = studentRepository.showMeAllRecordOfLastName();
 
         System.out.println("**************************************************");
-        System.out.println("\n" + student + "\n");
+        System.out.println("--------------------------------------------------");
+        System.out.println(student);
+        System.out.println("--------------------------------------------------");
+        System.out.println("**************************************************");
+    }
+    @Test
+    public void printStudentFromId(){
+        Student student = studentRepository.getStudentFromId(4L);
+
+        System.out.println("**************************************************");
+        System.out.println("--------------------------------------------------");
+        System.out.println(student);
+        System.out.println("--------------------------------------------------");
+        System.out.println("**************************************************");
+    }
+    @Test
+    public void printRangeOfStudentFromIdToId(){
+        List<Student> student = studentRepository.getRangeOfStudentFromId1ToId2(4L,12L);
+
+        System.out.println("**************************************************");
+        System.out.println("--------------------------------------------------");
+        System.out.println(student);
+        System.out.println("--------------------------------------------------");
         System.out.println("**************************************************");
     }
 

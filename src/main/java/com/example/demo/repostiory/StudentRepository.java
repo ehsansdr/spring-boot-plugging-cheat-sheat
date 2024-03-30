@@ -11,8 +11,9 @@ import java.util.List;
 public interface StudentRepository extends JpaRepository<Student,Long> {//<T, ID>T for entity and ID is id for you
                                                                         //we declare id filed in long so we put long
 
-    /**https://docs.spring.io/spring-data/jpa/reference/jpa/query-methods.html */
-    /**https://www.tutorialspoint.com/jpa/jpa_jpql.htm*/
+    /**https://www.javatpoint.com/jpa-jpql-introduction
+     * https://docs.spring.io/spring-data/jpa/reference/jpa/query-methods.html
+     * https://www.tutorialspoint.com/jpa/jpa_jpql.htm*/
 
     public List<Student> findByFirstName(String firstName);
     public List<Student> findByFirstNameContaining(String Name);/** if you want to find the record just eit part of the name use this
@@ -25,7 +26,10 @@ public interface StudentRepository extends JpaRepository<Student,Long> {//<T, ID
 
 
     //JPQl
-    /**l or s or any other letters is optional but
+    /**the role of JPA is to transform JPQL into SQL.
+     *
+     * l or s or any other letters is optional but
+     *
      * BR CAREFUL:
      * the annotation parameter that comes in () is statement based part and have rules
      * put the java class name of that table not the name of that the method would not execute
@@ -39,6 +43,8 @@ public interface StudentRepository extends JpaRepository<Student,Long> {//<T, ID
      *   create List<(the type of that field that in column and store data in that field of record)>
      *   lastName is String and you see that in student class
      *   private String firstName;
+     *
+     *   if you want to get input to your jpql use "?(number of the method parameter from lft to right)"
      *
      * */
     @Query("select s from Student s where emailId = ?1")
@@ -56,7 +62,11 @@ public interface StudentRepository extends JpaRepository<Student,Long> {//<T, ID
     //"Select e.lastName from Student e ORDER BY studentId desc"
     public List<String> showMeAllRecordOfLastName();
 
+    @Query("Select e from Student e where studentId = ?1")
+    public Student getStudentFromId(Long studentId);
 
+    @Query("Select e from Student e where studentId Between ?1 and ?2")//?1 and ?2 is included
+    public List<Student> getRangeOfStudentFromId1ToId2(Long FromStudentId, Long TosStudentId);
 
 
 }
