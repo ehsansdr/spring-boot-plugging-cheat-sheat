@@ -32,11 +32,11 @@ public class Controller {
         return "order : " + transaction.toString();
     }
 
-    //localhost:8080/hello?user-name=paramvalue&user-lastname=value_2
+    //localhost:8080/hello?showMeAllRecordOfStudent-name=paramvalue&showMeAllRecordOfStudent-lastname=value_2
     @PostMapping("/hello")
     public String postTransactionPram(
-            @RequestParam("user-name") String userName,
-            @RequestParam("user-lastname") String userLastName
+            @RequestParam("showMeAllRecordOfStudent-name") String userName,
+            @RequestParam("showMeAllRecordOfStudent-lastname") String userLastName
             ){
         return "my value = " + userName + "   " + userLastName;
     }

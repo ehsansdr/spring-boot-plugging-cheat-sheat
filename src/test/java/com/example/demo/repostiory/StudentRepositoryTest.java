@@ -54,45 +54,89 @@ class StudentRepositoryTest {
     public void printStudentByFirstName(){
         List<Student> students =
                 studentRepository.findByFirstName("mmd");//self added
-
-        System.out.println(students);
+        System.out.println("**************************************************");
+        System.out.println("\n" + students + "\n");
+        System.out.println("**************************************************");
     }
+
+//    @Test
+//    public void findByFirstNameAndLastName(){
+//        List<Student> students =
+//                studentRepository.findByLastnameAndFirstname("sdr2","ehsan2");//self added
+//
+//        System.out.println("\n" + students + "\n");
+//    }
     @Test
     public void printStudentByLastName(){
         List<Student> students =
                 studentRepository.findByLastName("mmdi nia");//self added
-
+        System.out.println("**************************************************");
         System.out.println(students);
+        System.out.println("**************************************************");
     }
 
     @Test
     public void printStudentByFirstNameContaining(){
         List<Student> students =
                 studentRepository.findByFirstNameContaining("mm");//self added
-
+        System.out.println("**************************************************");
         System.out.println(students);
+        System.out.println("**************************************************");
+
     }
     @Test
     public void printGuardianBaseOnName(){
         List<Student> students =
                 studentRepository.findByGuardianName("akbar rahimi nia");//self added
+        System.out.println("**************************************************");
+        System.out.println("\n" + students + "\n");
+        System.out.println("**************************************************");
 
-        System.out.println(students);
     }
 
     @Test
     public void printGuardianMobileBaseOnMobile(){
         List<Student> students =
-                studentRepository.user();//self added
+                studentRepository.showMeAllRecordOfStudent();//self added
 
-        System.out.println(students);
+        System.out.println("**************************************************");
+        System.out.println("\n" + students + "\n");
+        System.out.println("**************************************************");
     }
 
     @Test
     public void printAllStudent(){
         List<Student> studentList = studentRepository.findAll();
 
-        System.out.println("studentList : " + studentList);
+        System.out.println("**************************************************");
+        System.out.println("studentList : " + "\n" + studentList + "\n");
+        System.out.println("**************************************************");
+    }
+    @Test
+    public void printGetStudentByEmailAddress(){
+        Student student = studentRepository.getStudentByEmailAddress("ehsan1234@gamol.com");
+
+        System.out.println("**************************************************");
+        System.out.println("\n" + student + "\n");
+        System.out.println("**************************************************");
+    }
+
+    @Test
+    public void printGetStudentFirstName(){
+        List<String> student = studentRepository.showMeAllRecordOfFirstName();
+
+        System.out.println("**************************************************");
+        System.out.println("\n" + student + "\n");
+        System.out.println("**************************************************");
+    }
+
+    @Test
+    public void printGetStudentLastName(){
+        List<String> student = studentRepository.showMeAllRecordOfLastName();
+
+        System.out.println("**************************************************");
+        System.out.println("\n" + student + "\n");
+        System.out.println("**************************************************");
     }
 
 }

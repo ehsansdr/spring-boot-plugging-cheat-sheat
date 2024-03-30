@@ -42,7 +42,7 @@ public class Student {
     //or
     @Column(
             name = "email_Address",
-            nullable = false//it means user can leave this empty
+            nullable = false//it means showMeAllRecordOfStudent can leave this empty
     )
     private String emailId;
 
