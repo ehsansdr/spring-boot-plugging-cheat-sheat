@@ -24,7 +24,7 @@ public class Student {
     @Id
     //how we can use sequence for generating automatically fo MYSQL (NOT ORACLE OR POSTGRES)
     //generating but not using that
-    @SequenceGenerator(
+    @SequenceGenerator(/** IF YOU WANT TO DO THIS ON FIELD DECLARE THAT AS Long ,not long or Integer ,Not int */
             name = "student_sequence",
             sequenceName = "student_sequence",
             allocationSize = 1

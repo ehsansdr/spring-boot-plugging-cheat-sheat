@@ -1,8 +1,11 @@
 package com.example.demo.repostiory;
 
 import com.example.demo.Tables.Student;
+import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -68,5 +71,31 @@ public interface StudentRepository extends JpaRepository<Student,Long> {//<T, ID
     @Query("Select e from Student e where studentId Between ?1 and ?2")//?1 and ?2 is included
     public List<Student> getRangeOfStudentFromId1ToId2(Long FromStudentId, Long TosStudentId);
 
+
+    //NATIVE QUERY
+
+    /**
+     * if you want to use this type of @Query
+     * be careful about this:
+     * use the name of the able not the name if the filed in java class
+     * and not the name of java class the name of table
+     */
+    @Query(
+            value = "select * from tbl_student s where s.email_Address = ?1",
+            nativeQuery = true
+    )
+    Student getStudentEmailAddressNative(String emailId);
+
+
+
+    @Transactional/** important */
+    @Modifying/** important */
+    @Query(
+            value = "UPDATE tbl_student\n" +
+                    "SET last_name = :studentName " +
+                    "WHERE email_Address = :emailIdOfTheStudent ;",
+            nativeQuery = true
+    )
+    int updateTheStudentByGettingEmailAddress(@Param("studentName")String studentName,@Param("emailIdOfTheStudent") String emailId);
 
 }
