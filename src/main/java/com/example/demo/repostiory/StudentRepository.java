@@ -89,11 +89,11 @@ public interface StudentRepository extends JpaRepository<Student,Long> {//<T, ID
 
 
     @Transactional/** important */
-    @Modifying/** important */
+    @Modifying/** important because we want to update and changing */
     @Query(
             value = "UPDATE tbl_student\n" +
                     "SET last_name = :studentName " +
-                    "WHERE email_Address = :emailIdOfTheStudent ;",
+                    "WHERE email_Address = :emailIdOfTheStudent ;",// be careful about spaces
             nativeQuery = true
     )
     int updateTheStudentByGettingEmailAddress(@Param("studentName")String studentName,@Param("emailIdOfTheStudent") String emailId);

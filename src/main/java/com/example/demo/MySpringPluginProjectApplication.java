@@ -15,7 +15,7 @@ import static com.example.demo.ConstantClass.JJJJ;
 @SpringBootApplication
 @RestController
 public class MySpringPluginProjectApplication {
-	          //this ||  ||  |current|
+	          // |this| |current|
 
 
 	public static void main(String[] args) throws SQLException {

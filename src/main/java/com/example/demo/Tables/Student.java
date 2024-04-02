@@ -40,7 +40,7 @@ public class Student {
 
     //@Column(name = "email_Address")
     //or
-    @Column(
+    @Column(/** if you do not have @Table annotation you get bean exception */
             name = "email_Address",
             nullable = false//it means showMeAllRecordOfStudent can leave this empty
     )

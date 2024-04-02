@@ -17,11 +17,11 @@ class CourseMaterialRepositoryTest {
     @Test
     public void saveCourseMaterial(){
         Course course = Course.builder()
-                .courseTitle("DSA")
+                .courseTitle("Graphic")
                 .credit(6)
                 .build();
 
-        /** because we have :
+        /** because we have course as @Entity and it table we need to have this in:
          * @OneToOne(
          *             cascade = CascadeType.ALL
          *     )
@@ -35,8 +35,10 @@ class CourseMaterialRepositoryTest {
 
         CourseMaterial courseMaterial =
                 CourseMaterial.builder()
-                        .url("www.google.com")
-                        .course(course)
+                        .url("www.Freepic.com")
+                        .course(course)//if you have :
+                        //optional = false//whenever you want to declare record (related field) required
+                        //and sereneness to declare it not execute
                         .build();
 
         courseMaterialRepository.save(courseMaterial);

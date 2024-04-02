@@ -3,11 +3,12 @@ package com.example.demo.Tables;
 import jakarta.persistence.*;
 import lombok.*;
 
-@AllArgsConstructor
-@NoArgsConstructor
-@Data
 
 @Entity
+
+@AllArgsConstructor
+@NoArgsConstructor
+//@Data   /** WEGOT STACK OVERFLOW EXCEPTION IN CourseRepositoryTest BECAUSE OF THIS SO I OMITTED THIS*/
 @Builder/**  don't forget this  */
 public class Course {
 
@@ -22,12 +23,35 @@ public class Course {
             strategy =  GenerationType.SEQUENCE,
             generator = "Course_sequence"
     )
-    private Long courseId;//
+    private Long CourseId;//use Long ,not long
     private String courseTitle;
     private Integer credit;
+
+    @OneToOne(//if you don't have this you will
+            cascade = CascadeType.ALL//private Course course; in CourseMaterial so we use the object name course
+            //fetch = FetchType.LAZY
+    )
+//    @Column(
+//            name = "courseMaterial"
+//    )
+    private CourseMaterial courseMaterial;
+
+
+    @ManyToOne(
+            cascade = CascadeType.ALL,  //?
+            fetch = FetchType.LAZY
+    )
+
+//    @Column(
+//            name = "teacher Id"
+//    )
+    private Teacher teacher;
+
 
     public Course(String courseTitle, Integer credit) {
         this.courseTitle = courseTitle;
         this.credit = credit;
     }
+
+
 }
