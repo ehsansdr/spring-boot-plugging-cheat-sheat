@@ -28,8 +28,8 @@ public class Course {
     private Integer credit;
 
     @OneToOne(//if you don't have this you will
-            cascade = CascadeType.ALL//private Course course; in CourseMaterial so we use the object name course
-            //fetch = FetchType.LAZY
+            cascade = CascadeType.ALL,//private Course course; in CourseMaterial so we use the object name course
+            fetch = FetchType.LAZY
     )
 //    @Column(
 //            name = "courseMaterial"
@@ -38,13 +38,14 @@ public class Course {
 
 
     @ManyToOne(
-            cascade = CascadeType.ALL,  //?
-            fetch = FetchType.LAZY
+            cascade = CascadeType.ALL  //when ever you are saving new course and new teacher
+            //and new course material all the things save
+//            fetch = FetchType.LAZY
     )
-
-//    @Column(
-//            name = "teacher Id"
-//    )
+    @JoinColumn(
+            name = "Teacher_id",
+            referencedColumnName = "TeacherId"
+    )
     private Teacher teacher;
 
 

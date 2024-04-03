@@ -17,7 +17,7 @@ class CourseMaterialRepositoryTest {
     @Test
     public void saveCourseMaterial(){
         Course course = Course.builder()
-                .courseTitle("Graphic")
+                .courseTitle(".net")
                 .credit(6)
                 .build();
 
@@ -35,7 +35,7 @@ class CourseMaterialRepositoryTest {
 
         CourseMaterial courseMaterial =
                 CourseMaterial.builder()
-                        .url("www.Freepic.com")
+                        .url("www.digikala.com")
                         .course(course)//if you have :
                         //optional = false//whenever you want to declare record (related field) required
                         //and sereneness to declare it not execute

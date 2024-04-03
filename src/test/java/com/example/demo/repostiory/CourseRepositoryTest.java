@@ -1,6 +1,7 @@
 package com.example.demo.repostiory;
 
 import com.example.demo.Tables.Course;
+import com.example.demo.Tables.Teacher;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -41,6 +42,22 @@ class CourseRepositoryTest {
         System.out.println(courses.toString());
         System.out.println("--------------------------------------------------");
         System.out.println("**************************************************");
+    }
+    @Test
+    public void saveCourseWithTeacherObject(){
+        Teacher teacher = Teacher.builder()
+                .firstName("Ramin")
+                .lastName("Khandan")
+                .build();
+
+        Course course = Course.builder()
+                .courseTitle("dailyCodeBuffer")
+                .credit(6)
+                .teacher(teacher)
+                .build();
+
+
+        courseRepository.save(course);
     }
 
 }

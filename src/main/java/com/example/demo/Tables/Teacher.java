@@ -32,18 +32,19 @@ public class Teacher {
     private String firstName;
     private String lastName;
 
-    @OneToMany(//uni directional on to
-        cascade = CascadeType.ALL,  //?
-            fetch = FetchType.LAZY  //be careful about this
-    )
-    @JoinColumn(//if you want to link to secrete table to rwo column di this
-            name = "Courses",//
-
-            /**  bug */
-            referencedColumnName = ""//another table column
-            //if ypu clicked on this column you will get to the Course record to another and the column in this
-            // table will get value from upper column from beneath table
-            //
-    )
-    private List<Course> course;//because one teacher can have multiple course
+//    @OneToMany(//uni directional on to
+//        cascade = CascadeType.ALL  //when ever you are saving new record
+//            // all the things save
+//            //fetch = FetchType.LAZY  //be careful about this
+//    )
+//    @JoinColumn(//if you want to link to secrete table to rwo column di this
+//            name = "Teacher_Id",//
+//
+//            /**  bug */
+//            referencedColumnName = "TeacherId"//another table column
+//            //if ypu clicked on this column you will get to the Course record to another and the column in this
+//            // table will get value from upper column from beneath table
+//            //
+//    )
+//    private List<Course> course;//because one teacher can have multiple course
 }
