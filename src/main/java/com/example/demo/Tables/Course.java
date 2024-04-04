@@ -74,16 +74,20 @@ public class Course {
                     //so copy and paste the exact name of the field
             )
     )
-    private List<Student> students;
+    private List<Student> students = new ArrayList<>();;
 
     public void addStudent(Student student){
         //we add this method becuase we have @ManyToMany in field for students
 
         if (students == null) {
             this.students = new ArrayList<>();
-        }
-        else
             students.add(student);
+            System.out.println("\nthis.students = new ArrayList<>();\n");
+        }
+        else{
+            students.add(student);
+            System.out.println("\nstudents.add(student);\n");
+        }
     }
 
 

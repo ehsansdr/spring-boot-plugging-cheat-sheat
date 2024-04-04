@@ -90,9 +90,40 @@ class CourseRepositoryTest {
     @Test
     public void saveCourseWithStudentAndTeacher(){
 
+        //we have bug here
+        //we can add teacher
+        //we can add course
+
+        //but student can not be added
+        //we can add student from student repository but not from here
+        //but student and course table does not get any thing
+
+        /**preblem solve:
+         *  because in addStudent();
+         *  we did not add student correctly:
+         *  public void addStudent(Student student){
+         *         //we add this method becuase we have @ManyToMany in field for students
+         *
+         *         if (students == null) {
+         *             this.students = new ArrayList<>();
+         *             System.out.println("\nthis.students = new ArrayList<>();\n");
+         *         }
+         *         else{
+         *             students.add(student);
+         *             System.out.println("\nstudents.add(student);\n");
+         *         }
+         *     }
+         *
+         *
+         *  the if condition if (students == null) execute and we do not have students.add(student); in there
+         *  so i add in both block to execute and
+         *  problem solved
+         *  */
+
+
         Teacher teacher = Teacher.builder()
-                .firstName("mohamad")
-                .lastName("sahahee")
+                .firstName("a")
+                .lastName("felani")
                 .build();
 
         Guardian guardian = Guardian.builder()
@@ -102,14 +133,14 @@ class CourseRepositoryTest {
                 .build();
 
         Student student1 = Student.builder()
-                .firstName("mmmdrza")
-                .lastName("esmailly")
-                .emailId("esmaillykd@gmail.com")
+                .firstName("ali")
+                .lastName("khalili")
+                .emailId("khalilikd@gmail.com")
                 .guardian(guardian)
                 .build();
 
         Course course = Course.builder()//
-                .courseTitle("physics")
+                .courseTitle("zamin shenasi")
                 .credit(12)
                 .teacher(teacher)
                 .build();
@@ -120,6 +151,7 @@ class CourseRepositoryTest {
 
         System.out.println("**************************************************");
         System.out.println("--------------------------------------------------");
+        System.out.println("student1 : " + student1.toString() + "\nADDED");
         System.out.println("course : " + course + "\nADDED");
         System.out.println("--------------------------------------------------");
         System.out.println("**************************************************");
