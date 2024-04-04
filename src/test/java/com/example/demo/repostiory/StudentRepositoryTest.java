@@ -201,4 +201,33 @@ class StudentRepositoryTest {
         System.out.println("**************************************************");
     }
 
+    @Test
+    public void saveStudentInTest(){
+
+
+        //without guardian you get exception
+        Guardian guardian = Guardian.builder()
+                .name("poya jan")
+                .email("pouyahase email")
+                .mobile("23569")
+                .build();
+
+
+
+        Student student1 = Student.builder()
+                .firstName("mmmdrzae")
+                .lastName("esmaillye")
+                .emailId("esmaillyfkd@gmail.com")
+                .guardian(guardian)
+                .build();
+
+        studentRepository.save(student1);
+
+        System.out.println("**************************************************");
+        System.out.println("--------------------------------------------------");
+        System.out.println("student1 : " + student1 + "\nADDED");
+        System.out.println("--------------------------------------------------");
+        System.out.println("**************************************************");
+    }
+
 }

@@ -10,13 +10,14 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Repository
+@Repository//To access our Products, we’ll need a ProductRepository:
 public interface StudentRepository extends JpaRepository<Student,Long> {//<T, ID>T for entity and ID is id for you
                                                                         //we declare id filed in long so we put long
 
     /**https://www.javatpoint.com/jpa-jpql-introduction
      * https://docs.spring.io/spring-data/jpa/reference/jpa/query-methods.html
-     * https://www.tutorialspoint.com/jpa/jpa_jpql.htm*/
+     * https://www.tutorialspoint.com/jpa/jpa_jpql.htm
+     * https://www.baeldung.com/spring-data-jpa-query*/
 
     public List<Student> findByFirstName(String firstName);
     public List<Student> findByFirstNameContaining(String Name);/** if you want to find the record just eit part of the name use this

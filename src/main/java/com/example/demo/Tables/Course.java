@@ -3,6 +3,9 @@ package com.example.demo.Tables;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 @Entity
 
@@ -47,6 +50,41 @@ public class Course {
             referencedColumnName = "TeacherId"
     )
     private Teacher teacher;
+
+    @ManyToMany(
+            cascade = CascadeType.ALL
+    )
+    @JoinTable(// 6:45:0 for this tutorial
+            //this annotation we need to have with colum we have in this table sowe use this pattern
+
+            name = "student_course_mapping",//this table would be created
+
+            //one of the column that we want to have to this table
+            joinColumns = @JoinColumn(
+                    name = "course_id",
+                    referencedColumnName = "CourseId"//we copy and paste the exact name from the course class field
+                    //so copy paste the exact name of the field
+            ),
+
+            /** we want to have common and conversely relation between Student and course table so we need
+             * this pattern : */
+            inverseJoinColumns = @JoinColumn(
+                    name = "student_id",
+                    referencedColumnName = "studentId"//we copy and paste the exact name from the Student class field
+                    //so copy and paste the exact name of the field
+            )
+    )
+    private List<Student> students;
+
+    public void addStudent(Student student){
+        //we add this method becuase we have @ManyToMany in field for students
+
+        if (students == null) {
+            this.students = new ArrayList<>();
+        }
+        else
+            students.add(student);
+    }
 
 
     public Course(String courseTitle, Integer credit) {
