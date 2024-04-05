@@ -51,6 +51,22 @@ public interface StudentRepository extends JpaRepository<Student,Long> {//<T, ID
      *   if you want to get input to your jpql use "?(number of the method parameter from lft to right)"
      *
      * */
+
+    /********************************************************************************************/
+
+    /** be careful if you can not use this type:
+     * @Query("select s.last_name from Staff s where s.staff_id =  :staffId")
+     *
+     *
+     * use this type
+     * @Query(
+     *             value = "select first_name from Staff s where staff_id = ?1",
+     *             nativeQuery = true
+     *     )
+     *
+     *     the value = "(use mysql statement , not jpql statement)"
+     *
+     *     */
     @Query("select s from Student s where emailId = ?1")
     Student getStudentByEmailAddress(String EmailId);
 

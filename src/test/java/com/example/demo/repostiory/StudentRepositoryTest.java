@@ -217,6 +217,15 @@ class StudentRepositoryTest {
         Student student1 = Student.builder()
                 .firstName("mmmdrzae")
                 .lastName("esmaillye")
+                /**
+                 * because we have
+                 * uniqueConstraints = @UniqueConstraint(//if you want to have some unique for column do this
+                 *                 name = "emailId_unique",
+                 *                 columnNames = "email_Address"//the name of the column the real one
+                 *         )
+                 * in student class and we have set this on email make sure to enter unique
+                 * instead you get exception
+                 * */
                 .emailId("esmaillyfkd@gmail.com")
                 .guardian(guardian)
                 .build();
