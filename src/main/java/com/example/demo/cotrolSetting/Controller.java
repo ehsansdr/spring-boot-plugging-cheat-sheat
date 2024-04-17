@@ -1,6 +1,14 @@
 package com.example.demo.cotrolSetting;
 
+import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
+
+import java.util.HashMap;
 
 //@RestController
 public class Controller {
@@ -24,7 +32,7 @@ public class Controller {
         return "order : " + order.toString();
     }
     @PostMapping("/post-Transaction")
-    public String postTransaction(@RequestBody Transaction transaction){
+    public String postTransaction(@Valid @RequestBody Transaction transaction){
 
         System.out.println("\npostTransaction called " + "Transaction : " + transaction.toString() + "\n");
         //System.out.println(order.toString());
@@ -44,5 +52,31 @@ public class Controller {
     @GetMapping("/d/d")
     public String getMapping(){
         return "getMapping is called";
+    }
+
+
+    // for exception handler
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResponseEntity<?> handleMethodArgumentNotValidException(
+            MethodArgumentNotValidException exp
+    ) {
+        /** if you want to manage exception and get message when the bad request happen
+         *  this method will send the exact solution in explicit way
+         */
+
+
+        var errors = new HashMap<String,String>(); // first String will hold the field name
+                                                  // second String will hold the message name
+
+        exp.getBindingResult().getAllErrors()
+                .forEach(error -> {
+                    var fieldName = ((FieldError) error).getField();
+                    var errorMessage = error.getDefaultMessage();
+                    errors.put(fieldName, errorMessage);
+                });
+
+
+        return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
+
     }
 }

@@ -19,9 +19,9 @@ class StudentRepositoryTest {
     public void saveStudent(){
         //because we have @Builder in Entity class we can do this
         Student student = Student.builder()
-                .emailId("ehsan1234@gmail.com")
-                .firstName("ehsan2")
-                .lastName("sdr2")
+                .emailId("ehsan123444@gmail.com")
+                //.firstName("ehsan2")
+                .lastName("sdr3")
                 //.guardianName("ali")
                 //.guardianEmail("guardianEmail@gamil.com")
                 //.guardianMobile("5999999999")

@@ -1,6 +1,7 @@
 package com.example.demo.Tables;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
 import lombok.*;
 
 
@@ -35,6 +36,8 @@ public class Student {
             generator = "student_sequence"
     )
     private Long studentId;
+
+    @NotEmpty
     private String firstName;
     private String lastName;
 
