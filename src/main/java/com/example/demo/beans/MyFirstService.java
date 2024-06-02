@@ -1,48 +1,20 @@
 package com.example.demo.beans;
 
-
-import com.example.demo.beans.MyFirstClass;
+import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.PropertySource;
-import org.springframework.context.annotation.PropertySources;
-
-//@Service
-//@PropertySource("classpath:custome.properties")
-@PropertySources({
-        @PropertySource("classpath:custome.properties"),
-        @PropertySource("classpath:hhh.properties")
-})
+import org.springframework.stereotype.Service;
+@NoArgsConstructor
+@Service
 public class MyFirstService {
-
     @Autowired
-    @Qualifier("mySecondBean")//use @Bean method name or its @Qualifier(""), not its method's name
-    private MyFirstClass myFirstClass;
-    @Value("${custome.peoperty22}")
-    String ff;
-
-    @Value("${my.custome.properties}")
-    String ff2;
-
-    //private Environment environment;
-
-    public String tellAStory(){
-        return "the dependency is saying : " + myFirstClass.sayHello();
-    }
-    public String getJavaVersion(){
-        return "\n\nenvironment.getProperty(java.version)";
-    }
-    public String readProperties(){
-        return ff2;
-    }
-
-
+    private MyFirstClass myFirstClass; /** be careful about naming ,name the class name as kamel case
+                                        instead you get error in log */
 //    @Autowired
-//    public void setEnvironment(@Qualifier Environment environment){
-//        this.environment = environment;
+//    public MyFirstService(MyFirstClass myFirstClass2) {
+//        this.myFirstClass2 = myFirstClass2;
 //    }
 
-
-
+    public String tellStory(){
+        return "\nthe dependency is saying : " + myFirstClass.sayHello();
+    }
 }

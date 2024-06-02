@@ -1,31 +1,29 @@
 package com.example.demo.beans;
 
-import com.example.demo.beans.MyFirstClass;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 
-//@Configuration
-//@Service
+@Configuration
 public class ApplicationConfig {
-    //Consider marking one of the beans as @Primary,
-    // updating the consumer to accept multiple beans,
-    // or using @Qualifier to identify the bean that should be consumed
 
-
-    @Bean
-    public MyFirstClass myFirstBean(){
-        System.out.println("\nmyFirstBean scanned");
-        return new MyFirstClass("first Bean");
+    @Bean        // for using the @Bean naming have no arg constructor in the bean class
+    @Primary
+    public MyFirstClass myFirstClass3(){
+        //System.out.println("\nApplicationConfig.class myFirstClass();");
+        return new MyFirstClass("First bean");
     }
 
-    @Bean
-    public MyFirstClass mySecondBean(){
-        System.out.println("\nmySecondBean scanned");
-        return new MyFirstClass("second Bean");
+    @Bean//("2nd")        // for using the @Bean naming have no arg constructor in the bean class
+	public MyFirstClass myFirstClass2(){
+        //System.out.println("\nApplicationConfig.class myFirstClass2();");
+		return new MyFirstClass("second bean");
+	}
+
+    @Bean//("3th")        // for using the @Bean naming have no arg constructor in the bean class
+    public MyFirstClass myFirstClass(){
+        //System.out.println("\nMyFirstClass.class myFirstClass3();");
+        return new MyFirstClass("3th bean");
     }
-    @Bean
-    //@Primary//will give higher priority and will execute before upper method/
-    public MyFirstClass myThirdBean(){
-        System.out.println("\nmyThirdBean scanned");
-        return new MyFirstClass("Third Bean");
-    }
+
 }
