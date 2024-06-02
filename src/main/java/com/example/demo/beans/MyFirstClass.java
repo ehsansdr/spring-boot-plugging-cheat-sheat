@@ -15,7 +15,7 @@ public class MyFirstClass {
     }
 
     public String sayHello(){
-        return "\nhello from myFirstClass ==> myVar = " ;//+ myVar ;
+        return "\nhello from myFirstClass ==> myVar = " + myVar ;
     }
 
 

@@ -1,19 +1,13 @@
 package com.example.demo;
 
+import com.example.demo.beans.MyFirstService;
+import com.example.demo.beans.MyFirstClass;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.web.bind.annotation.RestController;
 
-import javax.swing.*;
-import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.File;
 import java.sql.SQLException;
 
-import static com.example.demo.ConstantClass.JJJJ;
-
 @SpringBootApplication
-@RestController
 public class MySpringPluginProjectApplication {
 	          // |this| |current|
 
@@ -32,14 +26,21 @@ public class MySpringPluginProjectApplication {
 		so save spring returning in var like this
 		*/
 
-		SpringApplication.run(MySpringPluginProjectApplication.class, args);
+		var ctx = SpringApplication.run(MySpringPluginProjectApplication.class, args);
+
+		MyFirstClass myFirstClass = ctx.getBean(MyFirstClass.class);
+		System.out.println(myFirstClass.sayHello());
+
+
+//		MyFirstService myFirstService = ctx.getBean(MyFirstService.class); // the parameter class should be @Component in that
+//		System.out.println(myFirstService.tellStory());
 
 		/*
 		and if you want to create object in bean form first have at least one @Component annotated class
 		or another annotations that has the @Component in them like @Service and @Config
 		then use getBean() for that
 
-			MyFirstClass myFirstClass = springObj.getBean(MyFirstClass.class);
+			MyFirstClass MyFirstClass = springObj.getBean(MyFirstClass.class);
 
 		and you can use name for you bean
 		but  be careful about some hints
@@ -59,31 +60,6 @@ public class MySpringPluginProjectApplication {
 
 		/**if you are doing this way and do not have @component you will get Exception*/
 	}
-//    spring:
-//    datasource:
-//    url: jdbc:postgresql://localhost:5332/sayHello
-//    username: sdr
-//    password: 1235
-//    jpa:
-//    hibernate:
-//    ddl-auto: create-drop
-//    properties:
-//    hibernate:
-//    dialect: org.hibernate.dialect.PostgreSQLDialect
-//    format_sql: true
-//    show-sql: true
 
-
-//	@Bean
-//	public Customer sayHello(){
-//		return new Customer();
-//	}
-
-
-//	@GetMapping
-//	public String helloWorld(){
-//		System.out.println("\nffff");
-//		return "dddf";
-//	}
 
 }
