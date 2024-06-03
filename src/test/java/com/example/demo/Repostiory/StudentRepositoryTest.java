@@ -1,4 +1,4 @@
-package com.example.demo.repostiory;
+package com.example.demo.Repostiory;
 
 import com.example.demo.Tables.Guardian;
 import com.example.demo.Tables.Student;
@@ -29,6 +29,8 @@ class StudentRepositoryTest {
 
 
         studentRepository.save(student);
+
+
     }
 
 

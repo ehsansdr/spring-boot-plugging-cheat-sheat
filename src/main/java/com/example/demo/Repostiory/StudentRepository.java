@@ -1,4 +1,4 @@
-package com.example.demo.repostiory;
+package com.example.demo.Repostiory;
 
 import com.example.demo.Tables.Student;
 import jakarta.transaction.Transactional;

@@ -1,4 +1,4 @@
-package com.example.demo.repostiory;
+package com.example.demo.Repostiory;
 
 import com.example.demo.Tables.Course;
 import com.example.demo.Tables.CourseMaterial;

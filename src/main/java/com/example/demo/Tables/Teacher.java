@@ -1,6 +1,7 @@
 package com.example.demo.Tables;
 
 
+import com.example.demo.Repostiory.MangerRepository;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -31,6 +32,10 @@ public class Teacher {
     private Long TeacherId;
     private String firstName;
     private String lastName;
+
+    @ManyToOne
+    @JoinColumn(name = "dos")
+    Manager manger;
 
 //    @OneToMany(//uni directional on to
 //        cascade = CascadeType.ALL  //when ever you are saving new record

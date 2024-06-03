@@ -1,4 +1,4 @@
-package com.example.demo.repostiory;
+package com.example.demo.Repostiory;
 
 import com.example.demo.Tables.Course;
 import com.example.demo.Tables.Guardian;
@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
-import org.springframework.stereotype.Repository;
 
 import java.awt.print.Pageable;
 import java.util.List;

@@ -1,12 +1,11 @@
-package com.example.demo.repostiory;
+package com.example.demo.Repostiory;
 
 import com.example.demo.Tables.Course;
 import com.example.demo.Tables.Teacher;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-
-import java.util.List;
 
 @SpringBootTest
 class TeacherRepositoryTest {
@@ -41,4 +40,5 @@ class TeacherRepositoryTest {
 
         teacherRepository.save(teacher);
     }
+
 }

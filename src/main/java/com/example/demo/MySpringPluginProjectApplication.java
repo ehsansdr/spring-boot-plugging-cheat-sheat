@@ -28,8 +28,8 @@ public class MySpringPluginProjectApplication {
 
 		var ctx = SpringApplication.run(MySpringPluginProjectApplication.class, args);
 
-		MyFirstClass myFirstClass = ctx.getBean(MyFirstClass.class);
-		System.out.println(myFirstClass.sayHello());
+		MyFirstService myFirstService = ctx.getBean(MyFirstService.class);
+		System.out.println(myFirstService.tellStory());
 
 
 //		MyFirstService myFirstService = ctx.getBean(MyFirstService.class); // the parameter class should be @Component in that
