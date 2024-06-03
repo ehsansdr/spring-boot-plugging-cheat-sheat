@@ -68,7 +68,7 @@ This lowercase name becomes the default bean name.
     import org.springframework.stereotype.Component;
     
     @Component
-    public class UserService {
+    public class MyFirstClass {
         // Class Implementation
     }
     ******
@@ -85,8 +85,8 @@ This lowercase name becomes the default bean name.
     System.out.println(myFirstClass.sayHello());
 
 
-In this example, UserService is annotated with @Component. Since no explicit name is provided,
-Spring automatically assigns the default bean name userService to this bean.
+In this example, MyFirstClass is annotated with @Component. Since no explicit name is provided,
+Spring automatically assigns the default bean name myFirstClass to this bean.
 
 
 
@@ -147,7 +147,7 @@ And with @Bean:
         public MyBean myBean() {
             return new MyBean();
         }
-    }
+    } 
 
 In both cases, the bean will be registered with the name **customName** in the application context.
 
@@ -163,5 +163,89 @@ you can name one bean to multiple naming
         //System.out.println("\nApplicationConfig.class myFirstClass2();");
         return new MyFirstClass("second bean");
     }
+
+
+### Qualifier
+
+    @Bean        // for using the @Bean naming have no arg constructor in the bean class
+    @Qualifier("bean1")
+    public MyFirstClass myFirstClass(){
+    //System.out.println("\nApplicationConfig.class myFirstClass();");
+    return new MyFirstClass("First bean");
+    }
+
+    @Bean       // for using the @Bean naming have no arg constructor in the bean class
+    @Qualifier("bean2")
+    public MyFirstClass myFirstClass2(){
+        //System.out.println("\nApplicationConfig.class myFirstClass2();");
+		return new MyFirstClass("second bean");
+	}
+
+    ********
+    
+    @Autowired
+    @Qualifier("bean2")   // use the exact same name that you gave to the method
+    private MyFirstClass myFirstClass;
+
+    or 
+
+    @Autowired
+    public MyFirstService(@Qualifier("bean1") MyFirstClass myFirstClass2) {
+        this.myFirstClass = myFirstClass2;
+    }
+
+
+    @Autowired
+    @Qualifier("bean2")
+    private MyFirstClass myFirstClass;
+
+or of you did not have @Qualifier with specific name you can get aor autowired that by the bean name
+the method name or the @Bean(name) like:
+
+    @Bean       // for using the @Bean naming have no arg constructor in the bean class
+    public MyFirstClass myFirstClass2(){
+        //System.out.println("\nApplicationConfig.class myFirstClass2();");
+        return new MyFirstClass("second bean");
+    }
+
+    *****
+        
+    @Autowired
+    @Qualifier("myFirstClass2")
+    private MyFirstClass myFirstClass;
+
+
+we can name or qualify the bean by @Qualifier :
+
+    @Bean        // for using the @Bean naming have no arg constructor in the bean class
+    @Qualifier("bean1")
+    public MyFirstClass myFirstClass(){
+        //System.out.println("\nApplicationConfig.class myFirstClass();");
+        return new MyFirstClass("First bean");
+    }
+
+    *****
+
+    @Bean("3th")        // for using the @Bean naming have no arg constructor in the bean class
+    @Qualifier("bean3")
+    public MyFirstClass myFirstClass(){
+        //System.out.println("\nApplicationConfig.class myFirstClass();");
+        return new MyFirstClass("3th bean");
+    }
+
+    ******
+you can get the @bean by the bean name or @Qualifier name
+
+
+    @Qualifier("3th") MyFirstClass myFirstClass
+or
+    
+    @Qualifier("bean3") MyFirstClass myFirstClass
+
+**IMPORTANT HINT :
+
+@Autowired annotated method will execute even if they are not called so if you have 
+@Autowired annotated method it will execute anyway**
+
 
 
