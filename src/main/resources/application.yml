@@ -1,3 +1,6 @@
+my.custom.proprties : "alllllliiiii"
+
+
 # (the name ot database,not server the item that you see in database folder in pgadmin4)
 spring:
   datasource:
