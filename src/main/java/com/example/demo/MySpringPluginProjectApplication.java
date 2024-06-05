@@ -1,11 +1,13 @@
 package com.example.demo;
 
+import com.example.demo.beans.ConfigProp;
 import com.example.demo.beans.MyFirstService;
 import com.example.demo.beans.MyFirstClass;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.sql.SQLException;
+import java.util.Collections;
 
 @SpringBootApplication
 public class MySpringPluginProjectApplication {
@@ -26,10 +28,17 @@ public class MySpringPluginProjectApplication {
 		so save spring returning in var like this
 		*/
 
-		var ctx = SpringApplication.run(MySpringPluginProjectApplication.class, args);
+		var app = new SpringApplication(MySpringPluginProjectApplication.class);
+		//app.setDefaultProperties(Collections.singletonMap("spring.profiles.active","dev"));
+		var ctx = app.run(args);
 
 		MyFirstService myFirstService = ctx.getBean(MyFirstService.class);
 		System.out.println(myFirstService.tellStory());
+//		System.out.println("\n\n" + myFirstService.getJavaVersion());
+
+//		ConfigProp configProp = ctx.getBean(ConfigProp.class);
+//		configProp.ConfigPropLog();
+
 
 
 //		MyFirstService myFirstService = ctx.getBean(MyFirstService.class); // the parameter class should be @Component in that

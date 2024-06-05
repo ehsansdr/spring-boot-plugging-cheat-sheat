@@ -19,10 +19,15 @@ public class ConfigProp {
     int ddd;
     @Value("${random.uuid}")
     String password;
+    @Value("${my.custom.proprties}")
+    String myCustomProprties;
 
     public void ConfigPropLog(){
         System.out.println( "url  : " + url + "\n" +
                             "ddd  : " + ddd + "\n" +
-                            "password : " + password);
+                            "password : " + password + "\n" +
+                            "myCustomProprties : " + myCustomProprties
+
+                );
     }
 }

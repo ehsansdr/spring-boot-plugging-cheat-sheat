@@ -19,8 +19,8 @@ import org.springframework.stereotype.Service;
         @PropertySource("classpath:hhh.properties"),
 })
 public class MyFirstService {
-//    @Autowired
-//    @Qualifier("bean2")
+    @Autowired
+    //@Qualifier("3th")
     private MyFirstClass myFirstClass;
 
     @Value("my.prop")       // in this case if you just put the string without ${} the string will
@@ -56,12 +56,12 @@ public class MyFirstService {
 //        this.myFirstClass = myFirstClass;
 //    }
 
-    @Autowired
-    public void setMyFirstClass(@Qualifier("3th") MyFirstClass myFirstClass) {
+    //@Autowired
+    public void setMyFirstClass(MyFirstClass myFirstClass) {
         this.myFirstClass = myFirstClass;
     }
 
-    @Autowired
+    //@Autowired
     public void setEnvironment(Environment environment) {
         this.environment = environment;
     }

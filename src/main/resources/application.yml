@@ -1,8 +1,22 @@
 my.custom.proprties : "alllllliiiii"
 
 
-# (the name ot database,not server the item that you see in database folder in pgadmin4)
 spring:
+  profiles:
+    active:
+#      - dev
+#      - test
+      - 3th
+
+
+
+### The following 3 profiles are active: "dev", "fff", "ggg" even we do not create them
+
+
+
+##########
+# (the name ot database,not server the item that you see in database folder in pgadmin4)
+#spring:
   datasource:
     url: jdbc:mysql://localhost:3306/university# (database or schema name ,not server name)
     username: root # (the user name of ,mysql server ,not database or schema)

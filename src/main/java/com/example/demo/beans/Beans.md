@@ -248,4 +248,57 @@ or
 @Autowired annotated method it will execute anyway**
 
 
+## bean profile:
+you can have bean just in specefic profile by using **`@Profile`**
 
+but you should obey some important role:    
+
+**1. you should have qualifier or any other annotation for Autowire them which make order like  @Primary or @Qualifier or bean name:
+if not the spring can not find that even if there is only one existing bean**
+
+example :
+
+    @Bean        
+    @Profile("dev")
+    @Primary            // we make priority for this
+    public MyFirstClass myFirstClass(){
+    System.out.println("ApplicationConfig.class myFirstClass();");
+    return new MyFirstClass("First bean");
+    }
+
+
+    @Bean       
+    @Qualifier("bean2")  // we qualified this
+    @Profile("test") 
+    //@Primary
+    public MyFirstClass myFirstClass2(){
+        System.out.println("ApplicationConfig.class myFirstClass2();");
+		return new MyFirstClass("second bean");
+	}
+
+    @Bean("3th")       // we name this 
+    @Profile("3th")
+    public MyFirstClass myFirstClass3(){
+        System.out.println("MyFirstClass.class myFirstClass3();");
+        return new MyFirstClass("3th bean");
+    }
+ 
+    // in anouther class we have these 3 cases:
+    .........
+
+    @Autowired              // dev profile
+                            // we use @Primary to auto wire automaticlly
+    private MyFirstClass myFirstClass;
+    
+    .........
+
+    @Autowired              // test profile
+    @Qualifier("bean2")     // we use the @Qualifier("bean2") passing argument
+    private MyFirstClass myFirstClass;
+    .........
+
+    @Autowired              // 3th profile
+    @Qualifier("3th")       // we use the @Bean(name)
+    private MyFirstClass myFirstClass;
+    
+    
