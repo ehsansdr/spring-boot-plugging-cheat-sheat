@@ -4,6 +4,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.annotation.PropertySources;
 import org.springframework.core.env.Environment;
@@ -19,7 +20,7 @@ import org.springframework.stereotype.Service;
         @PropertySource("classpath:hhh.properties"),
 })
 public class MyFirstService {
-    @Autowired
+    //@Autowired
     //@Qualifier("3th")
     private MyFirstClass myFirstClass;
 
@@ -41,6 +42,7 @@ public class MyFirstService {
     private Environment environment; // from spring not hibernate
 
 
+
     /** be careful about naming ,name the class name as kamel case
                                         instead you get error in log */
 //    @Autowired
@@ -56,7 +58,7 @@ public class MyFirstService {
 //        this.myFirstClass = myFirstClass;
 //    }
 
-    //@Autowired
+    @Autowired
     public void setMyFirstClass(MyFirstClass myFirstClass) {
         this.myFirstClass = myFirstClass;
     }
@@ -68,7 +70,7 @@ public class MyFirstService {
 
     public String getJavaVersion(){
         return
-                myProp + "\n\n" + myProp2 + "\n\n" + hhh;
+                myFirstClass.sayHello();
 
 
                 // for getting the java version that we use on this projects

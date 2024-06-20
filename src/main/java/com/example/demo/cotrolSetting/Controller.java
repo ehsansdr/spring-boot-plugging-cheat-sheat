@@ -9,7 +9,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import java.util.HashMap;
 
@@ -19,18 +18,19 @@ public class Controller {
     @Autowired
     private StudentRepository studentRepository;
 
-    @PostMapping("/d/d/{message}")
-    public String postMapping(@PathVariable("message") String massage,
+    @PostMapping("/d/d/{message2}")
+    public String postMapping(@PathVariable String message2,
                               @RequestBody String message){
 
         //System.out.println(order.toString());
 
-        return "you sent " + massage + "\nmessageSent : " + message;
+        return "you sent " + message2 + "\nmessageSent : " + message;
     }
 
     @PostMapping("/post-order")
     public String postMap(@RequestBody Order order){
-
+        /** todo : in the json object class that sent to the DTO (order) class you should have accessor method (getter and setter) if not you get null
+         * and can not receive the object perfectly */
         System.out.println("\npostMap called " + "order : " + order.toString() + "\n");
         //System.out.println(order.toString());
 
@@ -38,7 +38,8 @@ public class Controller {
     }
     @PostMapping("/post-Transaction")
     public String postTransaction(@Valid @RequestBody Transaction transaction){
-
+    /** todo : in the json object class that sent to the DTO (Transaction) class you should have accessor method (getter and setter) if not you get null
+     * and can not receive the object perfectly */
         System.out.println("\npostTransaction called " + "Transaction : " + transaction.toString() + "\n");
         //System.out.println(order.toString());
 
@@ -48,13 +49,14 @@ public class Controller {
     //localhost:8080/hello?showMeAllRecordOfStudent-name=paramvalue&showMeAllRecordOfStudent-lastname=value_2
     @PostMapping("/hello")
     public String postTransactionPram(
-            @RequestParam("showMeAllRecordOfStudent-name") String userName,
-            @RequestParam("showMeAllRecordOfStudent-lastname") String userLastName
+            @RequestParam("lastName") String userLastName,
+            @RequestParam("username") String userName
             ){
-        return "my value = " + userName + "   " + userLastName;
+        return "username = " + userName + "\nlastName = " + userLastName;
     }
 
     @GetMapping("/d/d")
+    @ResponseStatus(HttpStatus.REQUESTED_RANGE_NOT_SATISFIABLE)
     public String getMapping(){
         return "getMapping is called";
     }
@@ -82,6 +84,8 @@ public class Controller {
 
     @PostMapping("/addData")
     public void addData(@Valid @RequestBody Student student){   // @Valid is necessary
+        /** todo : in the json object class that sent to the DTO (Student) class you should have accessor method (getter and setter) if not you get null
+         * and can not receive the object perfectly */
         Student students = Student.builder()
                 .firstName(student.getFirstName())
                 .lastName(student.getLastName())

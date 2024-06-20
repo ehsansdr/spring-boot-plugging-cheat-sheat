@@ -8,7 +8,7 @@ for scanning another file and allow spring to inject their variable you should h
 in the class level
 use :
 
-    @PropertySource("classpath:(.prperties file name)")   // no spaces allowed
+    @PropertySource("classpath:(file name).prperties")   // no spaces allowed
 
     @PropertySource("classpath:foo.properties") // ok
     @PropertySource("classpath: foo.properties") // not ok beacuse of space
@@ -48,7 +48,7 @@ the last source read takes precedence.**
 
 
 
-in this case if you just put the string without ${} the string will
+in this case if you just put the string without **`${}`** the string will
 will put the value in the string
 
     @Value("my.prop")       
@@ -77,10 +77,10 @@ spring
 
 ## application.properties: the Default Property File
 Boot applies its typical convention over configuration approach to property files. 
-This means that we can simply put an `**application.properties**` file in our `**src/main/resources**` directory, 
+This means that we can simply put an **`application.properties`** file in our **`src/main/resources`** directory, 
 and it will be auto-detected. We can then inject any loaded properties from it as normal.
 
-**`**application.properties**` will be scanned even if you do not want it**
+**`application.properties`** will be scanned even if you do not want it**
 
 So, by using this default file, we don’t have to explicitly register a PropertySource or even provide a path to a property file.
     
@@ -97,7 +97,7 @@ you can create property file not exactly
     properties = {"foo=bar"})
     class MyFirstServiceTest {
     
-        @Value("${ggg}")
+        @Value("${foo}")
         private String foo;
     
         @Test

@@ -1,36 +1,24 @@
 package com.example.demo.cotrolSetting;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Size;
+import lombok.Data;
+import lombok.ToString;
 
+@Data
+@ToString
 public class Order {
+    /** todo : in the json object class that sent to the DTO class you should have accessor method (getter and setter) if not you get null
+     * and can not receive the object perfectly */
+
+    //@JsonProperty("(name that you want to use just in postman or ...)")
     private String customerName;
     private String productName;
     private Integer numberOfProduct;
 
 
-    public String getCustomerName() {
-        return customerName;
-    }
 
-    public void setCustomerName(String customerName) {
-        this.customerName = customerName;
-    }
-
-    public String getProductName() {
-        return productName;
-    }
-
-    public void setProductName(String productName) {
-        this.productName = productName;
-    }
-
-    public Integer getNumberOfProduct() {
-        return numberOfProduct;
-    }
-
-    public void setNumberOfProduct(Integer numberOfProduct) {
-        this.numberOfProduct = numberOfProduct;
-    }
 
     @Override
     public String toString() {

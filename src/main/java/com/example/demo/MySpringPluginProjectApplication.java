@@ -1,13 +1,11 @@
 package com.example.demo;
 
-import com.example.demo.beans.ConfigProp;
 import com.example.demo.beans.MyFirstService;
 import com.example.demo.beans.MyFirstClass;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.sql.SQLException;
-import java.util.Collections;
 
 @SpringBootApplication
 public class MySpringPluginProjectApplication {
@@ -32,17 +30,17 @@ public class MySpringPluginProjectApplication {
 		//app.setDefaultProperties(Collections.singletonMap("spring.profiles.active","dev"));
 		var ctx = app.run(args);
 
-		MyFirstService myFirstService = ctx.getBean(MyFirstService.class);
-		System.out.println(myFirstService.tellStory());
-//		System.out.println("\n\n" + myFirstService.getJavaVersion());
+		MyFirstService myFirstClass = ctx.getBean(MyFirstService.class);
+		//System.out.println(myFirstClass.tellStory());
+ 		System.out.println("\n\n" + myFirstClass.getJavaVersion());
 
 //		ConfigProp configProp = ctx.getBean(ConfigProp.class);
 //		configProp.ConfigPropLog();
 
 
 
-//		MyFirstService myFirstService = ctx.getBean(MyFirstService.class); // the parameter class should be @Component in that
-//		System.out.println(myFirstService.tellStory());
+//		MyFirstService myFirstClass = ctx.getBean(MyFirstService.class); // the parameter class should be @Component in that
+//		System.out.println(myFirstClass.tellStory());
 
 		/*
 		and if you want to create object in bean form first have at least one @Component annotated class
@@ -63,9 +61,9 @@ public class MySpringPluginProjectApplication {
 		*/
 
 
-		//MyFirstService myFirstService = springObj.getBean(MyFirstService.class);
-		//System.out.println(myFirstService.tellAStory());
-		//System.out.println(myFirstService.readProperties());
+		//MyFirstService myFirstClass = springObj.getBean(MyFirstService.class);
+		//System.out.println(myFirstClass.tellAStory());
+		//System.out.println(myFirstClass.readProperties());
 
 		/**if you are doing this way and do not have @component you will get Exception*/
 	}

@@ -254,8 +254,8 @@ you can have bean just in specefic profile by using **`@Profile`**
 but you should obey some important role:    
 
 **1. you should have qualifier or any other annotation for Autowire them which make order like  @Primary or @Qualifier or bean name:
-if not the spring can not find that even if there is only one existing bean**
-
+if not the spring can not find that even if there is only one existing bean**   
+**2.if one bean were not been annotated by @Profile that will accessible in all profiles**
 example :
 
     @Bean        

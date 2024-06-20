@@ -23,7 +23,6 @@ public class ApplicationConfig {
     //@Qualifier("bean2")
     @Profile("test")
     @Primary
-
     public MyFirstClass myFirstClass2(){
         System.out.println("ApplicationConfig.class myFirstClass2();");
 		return new MyFirstClass("second bean");
