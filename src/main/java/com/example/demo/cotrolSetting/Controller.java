@@ -11,6 +11,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.List;
 
 @RestController
 public class Controller {
@@ -92,5 +93,12 @@ public class Controller {
                 .build();
 
         studentRepository.save(students);
+    }
+
+
+    @GetMapping("/getS/{id}")
+    public List<Student> getS(@PathVariable Long id){
+
+        return studentRepository.findAll();
     }
 }

@@ -30,13 +30,15 @@ public class Student {
             name = "student_sequence",
             sequenceName = "student_sequence",
             allocationSize = 1
-
     )
+
     //using created sequence
     @GeneratedValue(
-            strategy =  GenerationType.SEQUENCE,
+            strategy =  GenerationType.AUTO,
             generator = "student_sequence"
     )
+    // you can use just:
+    //@GeneratedValue
     private Long studentId;
 
     @NotEmpty              // @do not forgot @Valid before @RequestBody

@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 @NoArgsConstructor
 @Component          // so automatically spring will consider this class as spring bean
 public class MyFirstClass {
-    private String myVar;
+    private String myVar;// Fields should be private.
 
     /** if you have non default constructor in the class of type of bean you should add NoArgsConstructor instead you get error in log*/
     public MyFirstClass(String myVar) {

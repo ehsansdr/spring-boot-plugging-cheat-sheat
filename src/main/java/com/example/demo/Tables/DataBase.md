@@ -1,6 +1,9 @@
 # data base hint
 *************
 ### **Postgres Connection**
+[how-to-connect-spring-boot-project](https://genotechies.medium.com/how-to-connect-spring-boot-project-with-postgresql-database-in-vscode-b0b03b53040d)
+
+
 for connecting to postgres connection:
 
 download postgres server :           
@@ -13,19 +16,29 @@ download postgres server :
 the database name is the name you see in database          
 <img alt="img.png" height="450" src="img.png"/>
 
+have this in `pom.xml` :
+jpa dependency:      
 
-    spring:
-        datasource:
-            url: jdbc:mysql://localhost:3306/university  #(database or schema name ,not server name)
-            username: root # (the user name of ,mysql server ,not database or schema)
-            password:      # (the password of ,mysql server ,not database or schema)
-        driver-class-name: com.mysql.cj.jdbc.Driver
-    jpa:
-        hibernate:
-            ddl-auto: update  
-        show-sql: true    # it show sql statements that execute
-    # This will create table automatically in your database
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-data-jpa</artifactId>
+        <!--			search "data jpa" in search in add dependency in intellij-->
+        <!--			for having @Entity and @Sequance and ... don't have <scope></scope>-->
+        <!--			IntelliJ wil add this dependency with <scope></scope> so omit that-->
+        <!--			<scope>system</scope>-->
+        <!--			or -->
+        <!--			<scope>runtime</scope>-->
+     </dependency>
 
+
+and:           
+
+    <dependency>
+        <groupId>org.postgresql</groupId>
+        <artifactId>postgresql</artifactId>
+    </dependency>
+
+application.yml:
 
 or in advanced level:
 
@@ -34,13 +47,13 @@ or in advanced level:
         datasource:
             driver-class-name: org.postgresql.Driver
             url: jdbc:postgresql://localhost:5432/       #(the name of database)
-        username: postgres # (the username that default is "postgres")
-        password: postgres # (the password that i set is "postgres")
+            username: postgres # (the username that default is "postgres")
+            password: postgres # (the password that i set is "postgres")
     jpa:
         hibernate:
             ddl-auto: update
         # by defulat this is false
-        how-sql: true    # when run or hibernate execute command or query  it will be displayed in your ide or in the logs of your application
+        show-sql: true    # when run or hibernate execute command or query  it will be displayed in your ide or in the logs of your application
         properties:
             hibernate:
             format_sql: true
@@ -63,6 +76,24 @@ if you one the simple one use this:
                                 # "validate" validate schema make but make no change
 
 
+
+or:
+
+    spring:
+        datasource:
+            url: jdbc:postgresql://localhost:5432/nnnn
+            username: postgres
+            password: postgres
+            driver-class-name: org.postgresql.Driver
+    jpa:
+        hibernate:
+            ddl-auto: update
+        properties:
+            hibernate:
+                format_sql: true
+        show-sql: true
+
+
 you can check this gihub repository for copy and pasting better:              
 [https://github.com/ali-bouali/book-social-network/blob/main/book-network/src/main/resources/application-dev.yml](book-social-network/blob/main/book-network/src/main/resources/application-dev.yml)
 [https://github.com/ali-bouali/spring-boot-bootcamp/blob/main/src/main/resources/application.yml](spring-boot-bootcamp/blob/main/src/main/resources/application.yml)
@@ -70,6 +101,7 @@ you can check this gihub repository for copy and pasting better:
 
 
 concreting in dbeaver:       
+**download it from its original site**
 <img alt="img_1.png" height="500" src="img_1.png"/>              
 the data base name will come here the name that we see in `database` folder in pgadmin4
 and the exact same name in `url: ... ` in yml file
@@ -78,9 +110,8 @@ and the exact same name in `url: ... ` in yml file
 VERY IMPORTANT
 
 first you need to install mysql server and you can install that from above link and the tutorial of that in this link too
-https://www.w3-farsi.com/posts/18452/install-mysql-server/
-
+[https://www.w3-farsi.com/posts/18452/install-mysql-server/]()
 then you should install MYSQL Administrator :
-https://www.w3-farsi.com/posts/18452/install-mysql-server/
+[https://www.w3-farsi.com/posts/18452/install-mysql-server/]()
 
 and after that you make sure you have that install base on upper link you can use mysql command prompt (i do not actually know that you can to this by normal command prompt or not)

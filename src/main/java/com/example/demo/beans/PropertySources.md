@@ -180,4 +180,11 @@ or:
     String password;
 
 
+
+*************
+### what is??
+### @ConfigurationProperties(prefix = "datasource")
+
+
+
 (https://www.baeldung.com/properties-with-spring#:~:text=The%20%40PropertySource%20annotation%20is%20repeatable,PropertySource(%22classpath%3Abar.)

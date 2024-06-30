@@ -20,6 +20,9 @@ import org.springframework.stereotype.Service;
         @PropertySource("classpath:hhh.properties"),
 })
 public class MyFirstService {
+    /** todo : Fields should be private. **/
+
+
     //@Autowired
     //@Qualifier("3th")
     private MyFirstClass myFirstClass;

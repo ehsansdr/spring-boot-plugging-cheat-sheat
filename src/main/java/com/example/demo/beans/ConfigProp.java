@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 
 
 @Component
-@ConfigurationProperties(prefix = "datasource")
+@ConfigurationProperties(prefix = "data")
 @Setter
 @Getter
 public class ConfigProp {
@@ -19,14 +19,15 @@ public class ConfigProp {
     int ddd;
     @Value("${random.uuid}")
     String password;
-    @Value("${my.custom.proprties}")
-    String myCustomProprties;
+
+//    @Value("${my.custom.proprties}")
+//    String myCustomProprties;
 
     public void ConfigPropLog(){
         System.out.println( "url  : " + url + "\n" +
                             "ddd  : " + ddd + "\n" +
                             "password : " + password + "\n" +
-                            "myCustomProprties : " + myCustomProprties
+                            "myCustomProprties : " //+ myCustomProprties
 
                 );
     }

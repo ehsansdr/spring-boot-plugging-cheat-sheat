@@ -2,6 +2,62 @@
 for having better use of java object bean create better type of object for use
 
 *******
+Beans are special type of Pojos. There are some restrictions on POJO to be a bean.
+
+All JavaBeans are POJOs but not all POJOs are JavaBeans.
+Serializable i.e. they should implement Serializable interface. Still, some POJOs who don’t implement a Serializable interface are called POJOs because Serializable is a marker interface and therefore not of many burdens.
+Fields should be private. This is to provide complete control on fields.
+Fields should have getters or setters or both.
+A no-arg constructor should be there in a bean.
+Fields are accessed only by constructor or getter setters. 
+
+    // Java program to illustrate JavaBeans
+    class Bean implements Serializable {
+    // private field property
+    private Integer property;
+    public Bean()
+    {
+    // No-arg constructor
+    }
+
+	// setter method for property
+	public void setProperty(Integer property)
+	{
+		if (property == 0) {
+			// if property is 0 return
+			return;
+		}
+		this.property = property;
+	}
+
+	// getter method for property
+	public Integer getProperty()
+	{
+		if (property == 0) {
+			// if property is 0 return null
+			return null;
+		}
+		return property;
+	}
+    }
+
+    // Class to test above bean
+    public class GFG {
+    public static void main(String[] args)
+    {   
+        Bean bean = new Bean();
+
+		bean.setProperty(0);
+		System.out.println("After setting to 0: "
+						+ bean.getProperty());
+
+		bean.setProperty(5);
+		System.out.println("After setting to valid"
+						+ " value: "
+						+ bean.getProperty());
+	    }
+    }
+
 for create bean or using bean annotation it is senseless to have @Component or the annotations which has
 @Component in it
 @Component is an annotation that allows Spring to automatically detect the custom beans.
@@ -17,6 +73,8 @@ and you can get bean of component class be **getBean()**;
     MyFirstClass myFirstClass = ctx.getBean((class which has @Component and same as refrenc).class);
 
 so you create default bean!! 
+
+[https://www.geeksforgeeks.org/pojo-vs-java-beans/](https://www.geeksforgeeks.org/pojo-vs-java-beans/)
               
 [https://www.geeksforgeeks.org/how-to-create-a-spring-bean-in-3-different-ways/]()
 
