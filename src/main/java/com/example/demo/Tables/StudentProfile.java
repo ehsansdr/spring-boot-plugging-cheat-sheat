@@ -1,6 +1,5 @@
 package com.example.demo.Tables;
 
-
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -8,18 +7,20 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
 @Builder
-public class Teacher {
+public class StudentProfile {
 
     @Id
     @GeneratedValue
-    private Long teacherId;
+    private Integer Id;
+    private String Bio;
 
-    private String teacherFirstName;
-    private String teacherLastName;
-    private String teacherEmailId;
+    @OneToOne
+    @JoinColumn(name = "student_id")
+    private Student student;
 
 }

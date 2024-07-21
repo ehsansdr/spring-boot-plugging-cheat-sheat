@@ -6,7 +6,9 @@ Beans are special type of Pojos. There are some restrictions on POJO to be a bea
 
 All JavaBeans are POJOs but not all POJOs are JavaBeans.
 Serializable i.e. they should implement Serializable interface. Still, some POJOs who don’t implement a Serializable interface are called POJOs because Serializable is a marker interface and therefore not of many burdens.
-Fields should be private. This is to provide complete control on fields.
+Fields should be private.
+you can not field AutoWire the final field
+This is to provide complete control on fields.
 Fields should have getters or setters or both.
 A no-arg constructor should be there in a bean.
 Fields are accessed only by constructor or getter setters. 

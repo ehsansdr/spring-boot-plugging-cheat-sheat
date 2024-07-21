@@ -10,8 +10,6 @@ import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.xml.transform.sax.SAXResult;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class StudentServiceTest {

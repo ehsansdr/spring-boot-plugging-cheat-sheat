@@ -1,6 +1,5 @@
 package com.example.demo.Tables;
 
-
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,15 +10,15 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
+
 @Builder
-public class Teacher {
+public class School {
 
     @Id
     @GeneratedValue
-    private Long teacherId;
+    private Long classId;
 
-    private String teacherFirstName;
-    private String teacherLastName;
-    private String teacherEmailId;
+
+
 
 }

@@ -106,5 +106,10 @@ or in  postman:
 <img alt="img_2.png" src="img_2.png" width="800"/>
 
 
+Free fake and reliable API for testing and prototyping :         
+(for rest client I use `/posts` in `resources`)
+[jsonplaceholder typicode](https://jsonplaceholder.typicode.com/)
+
+
 
 
