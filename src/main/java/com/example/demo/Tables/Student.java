@@ -3,6 +3,8 @@ package com.example.demo.Tables;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Min;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -21,8 +23,12 @@ public class Student {
     @GeneratedValue
     private Long id;
 
+
     private String firstName;
     private String lastName;
+
+//    @Min(1)
+//    private int age;
 
     @Value("${random.uuid}" + "@gmail.com")
     private String emailId;
