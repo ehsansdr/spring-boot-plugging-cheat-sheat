@@ -20,6 +20,16 @@ public class postService {
         this.restClient = RestClient.builder()
                 .baseUrl("https://jsonplaceholder.typicode.com") // the service that we are going to call
                 .build();
+
+//        RestClient restClient = RestClient.builder()
+//                .requestFactory(new HttpComponentsClientHttpRequestFactory())
+//                .messageConverters(converters -> converters.add(new MyCustomMessageConverter()))
+//                .baseUrl("https://example.com")
+//                .defaultUriVariables(Map.of("variable", "foo"))
+//                .defaultHeader("My-Header", "Foo")
+//                .requestInterceptor(myCustomInterceptor)
+//                .requestInitializer(myCustomInitializer)
+//                .build();
     }
 
 
@@ -45,4 +55,12 @@ public class postService {
                 .retrieve() // define how to extract response
                 .body(new ParameterizedTypeReference<List<Comments>>() {}); // or toEntity()
     }
+
+    public Comments findCommentById(Integer id) {
+        return restClient.get()
+                .uri("/comments/{id}",id) // this will add this "/" to the baseURI that we get in constructor
+                .retrieve() // define how to extract response
+                .body(Comments.class); // or toEntity()
+    }
+
 }

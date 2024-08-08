@@ -1,4 +1,4 @@
-package com.example.demo.cotrolSetting;
+package com.example.demo.controller;
 
 import com.example.demo.Repostiory.StudentRepository;
 import com.example.demo.Tables.Student;

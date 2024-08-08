@@ -87,4 +87,27 @@ the second one and the third one will not be considered
 
 [https://docs.spring.io/spring-framework/docs/5.1.2.RELEASE_to_5.1.3.RELEASE/Spring%20Framework%205.1.3.RELEASE/org/springframework/http/HttpRequest.html](https://docs.spring.io/spring-framework/docs/5.1.2.RELEASE_to_5.1.3.RELEASE/Spring%20Framework%205.1.3.RELEASE/org/springframework/http/HttpRequest.html)
 
+
+******************
+he Spring Framework provides the following choices for making calls to REST endpoints:
+
+**RestClient** - synchronous client with a fluent API.
+
+**WebClient** - non-blocking, reactive client with fluent API.
+
+**RestTemplate** - synchronous client with template method API.
+
+**HTTP Interface** - annotated interface with generated, dynamic proxy implementation.
+
 [https://docs.spring.io/spring-framework/reference/integration/rest-clients.html](https://docs.spring.io/spring-framework/reference/integration/rest-clients.html)
+
+### **RestClient**
+
+
+
+
+
+[https://github.com/danvega/spring-clients](https://github.com/danvega/spring-clients)
+[https://www.baeldung.com/spring-boot-restclient](https://www.baeldung.com/spring-boot-restclient)
+
+

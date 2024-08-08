@@ -1,7 +1,9 @@
 package com.example.demo;
 
+import com.example.demo.Repostiory.SchoolRepository;
 import com.example.demo.beans.MyFirstService;
 import com.example.demo.beans.MyFirstClass;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -65,8 +67,7 @@ public class MySpringPluginProjectApplication {
 		//System.out.println(myFirstClass.tellAStory());
 		//System.out.println(myFirstClass.readProperties());
 
-		/**if you are doing this way and do not have @component you will get Exception*/
+		/** if you are doing this way and do not have @component you will get Exception*/
 	}
-
 
 }

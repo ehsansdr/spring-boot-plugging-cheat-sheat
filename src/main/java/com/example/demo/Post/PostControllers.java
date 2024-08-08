@@ -32,9 +32,15 @@ public class PostControllers {
     Post findById(@PathVariable Integer id){
         return postService.findById(id);
     }
+    // **************************************************
+    @GetMapping("/comments/{id}")
+    Comments findByCommentId(@PathVariable Integer id){
+        return postService.findCommentById(id);
+    }
 
     @GetMapping("/comments")
-    List<Comments> findAllComnets(){
+    List<Comments> findAllComments(){
         return postService.findAllComment();
     }
+    // **************************************************
 }

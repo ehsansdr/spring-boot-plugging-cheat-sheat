@@ -1,8 +1,5 @@
-package com.example.demo.cotrolSetting;
+package com.example.demo.controller;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.Size;
 import lombok.Data;
 import lombok.ToString;
 

@@ -1,4 +1,4 @@
-package com.example.demo.cotrolSetting;
+package com.example.demo.controller;
 
 import org.springframework.stereotype.Service;
 
