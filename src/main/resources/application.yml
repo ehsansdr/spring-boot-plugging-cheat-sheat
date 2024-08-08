@@ -16,7 +16,7 @@ spring:
     password: postgres # (the password that i set is "postgres")
   jpa:
     hibernate:
-      ddl-auto:  create-drop
+      ddl-auto:  update # create-drop
     # by defulat this is false
     show-sql: true    # when run or hibernate execute command or query  it will be displayed in your ide or in the logs of your application
     properties:

@@ -5,6 +5,7 @@ import com.example.demo.Repostiory.StudentRepository;
 import com.example.demo.Tables.Student;
 import org.apache.catalina.authenticator.SavedRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -28,6 +29,8 @@ public class StudentController {
 //                 }
 //        }
 
+
+        student.setEmailId(StudentService.randomString(6) + "@gmail.com");
         studentRepository.save(student);
         return student;
     }

@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 
 @Entity
 @Table(name = "Student")
@@ -22,6 +23,8 @@ public class Student {
 
     private String firstName;
     private String lastName;
+
+    @Value("${random.uuid}" + "@gmail.com")
     private String emailId;
 
     @OneToOne(mappedBy = "student",
