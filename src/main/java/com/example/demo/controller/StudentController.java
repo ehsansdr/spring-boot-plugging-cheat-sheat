@@ -43,6 +43,7 @@ public class StudentController {
 //        }
 
 
+        /** first we save the school then we add student to the saved school */
         var student = toStudent(dto);
         var savedStudent = studentRepository.save(student);
 

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 public class SchoolController {
@@ -43,12 +44,26 @@ public class SchoolController {
 
         SchoolResponseDto tempSchool;
         for(School school: schools){
-            tempSchool = new SchoolResponseDto(school.getName(),toStudentData(school.getStudents()));
-            schoolsRepDto.add(tempSchool);
+            schoolsRepDto.add(new SchoolResponseDto(school.getName(),toStudentData(school.getStudents())));
         }
 
         return schoolsRepDto;
     }
+
+    private SchoolDto toSchoolDto(School school) {
+        return new SchoolDto(school.getName());
+    }
+
+    @GetMapping("/schools2")
+    private List<SchoolDto> findAll(){
+        return schoolRepository.findAll() // return the list of the school
+                .stream()  // transform the list to the stream
+                .map(this::toSchoolDto) // transformation of the object , for each element of the school
+                // we can perform the transformation and it will call toSchoolDto()
+                // it will call the "stream" of the schoolDto not the "List"
+                .collect(Collectors.toList()); // and this method collect the stream as list
+    }
+
 
     private List<SchoolResponseDto.StudentData> toStudentData(List<Student> students){
         List<SchoolResponseDto.StudentData> studentData = new ArrayList<>();
