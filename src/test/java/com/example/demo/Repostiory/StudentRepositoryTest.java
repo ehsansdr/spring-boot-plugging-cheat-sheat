@@ -1,7 +1,7 @@
 package com.example.demo.Repostiory;
 
-import com.example.demo.Tables.Guardian;
-import com.example.demo.Tables.Student;
+import com.example.demo.Entity.Guardian;
+import com.example.demo.Entity.Student;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

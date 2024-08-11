@@ -1,4 +1,4 @@
-package com.example.demo.Tables;
+package com.example.demo.DTO;
 
 import java.util.List;
 

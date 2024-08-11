@@ -1,7 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.Repostiory.StudentRepository;
-import com.example.demo.Tables.Student;
+import com.example.demo.Entity.Student;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;

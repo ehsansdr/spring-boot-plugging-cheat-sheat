@@ -1,4 +1,4 @@
-package com.example.demo.Tables;
+package com.example.demo.DTO;
 
 /**
  * A DTO for the {@link Student} entity

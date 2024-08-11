@@ -1,6 +1,6 @@
-package com.example.demo.Tables;
+package com.example.demo.DTO;
 
-import java.io.Serializable;
+import com.example.demo.Entity.School;
 
 /**
  * A DTO for the {@link School} entity

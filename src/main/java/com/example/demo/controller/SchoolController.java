@@ -1,10 +1,10 @@
 package com.example.demo.controller;
 
 import com.example.demo.Repostiory.SchoolRepository;
-import com.example.demo.Tables.School;
-import com.example.demo.Tables.SchoolDto;
-import com.example.demo.Tables.SchoolResponseDto;
-import com.example.demo.Tables.Student;
+import com.example.demo.Entity.School;
+import com.example.demo.DTO.SchoolDto;
+import com.example.demo.DTO.SchoolResponseDto;
+import com.example.demo.Entity.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
