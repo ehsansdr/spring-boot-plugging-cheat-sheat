@@ -11,6 +11,9 @@ import java.util.Random;
 @Service
 public class StudentMapper {
 
+    // todo : if we need new method for mapping or if we need to return from the type to another type or transformation
+    //
+
     // for getting dta from dto to entity object
     public Student toStudent (StudentDto dto){
         var student = new Student();
@@ -26,7 +29,7 @@ public class StudentMapper {
     }
 
     // creating the dto for saving data just to show that in the client
-    public StudentResponseDto studentResponseDto(Student student){
+    public StudentResponseDto ToStudentResponseDto(Student student){
         return new StudentResponseDto(
                 student.getFirstName(),
                 student.getLastName(),
@@ -50,4 +53,6 @@ public class StudentMapper {
 
         return generatedString;
     }
+
+
 }

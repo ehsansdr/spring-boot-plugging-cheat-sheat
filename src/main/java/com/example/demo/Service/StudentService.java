@@ -8,8 +8,14 @@ import com.example.demo.Repostiory.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class StudentService {
+
+    // todo : do all the business logic and operation to the in the class that related to the service
 
     @Autowired
     private StudentRepository studentRepository;
@@ -18,6 +24,14 @@ public class StudentService {
     private SchoolRepository schoolRepository;
     @Autowired
     private StudentMapper studentMapper;
+
+    public List<StudentResponseDto> findStudentByFirstNameContaining(String name) {
+        return studentRepository.findByFirstNameContaining(name)
+                .stream() // we make it in to stream ,not list
+                // like studentMapper.studentResponseDto(studentRepository.findAll());
+                .map(studentMapper::ToStudentResponseDto)
+                .collect(Collectors.toList()); // we change it back to the list
+    }
 
 
     public StudentResponseDto saveStudent(StudentDto dto) {
@@ -42,17 +56,61 @@ public class StudentService {
         var student = studentMapper.toStudent(dto);
         var savedStudent = studentRepository.save(student);
 
-        return studentMapper.studentResponseDto(student);
+        return studentMapper.ToStudentResponseDto(student);
     }
 
 
-    public Student findStudentById(long studentId) {
+    public StudentResponseDto findStudentById(long studentId) {
+        //return studentRepository.findById(studentId)
+        //        .orElse(new Student()); /** be careful you will get and error in console if you did not have orElse() */
+
+        // we have another option
+
         return studentRepository.findById(studentId)
-                .orElse(new Student()); /** be careful you will get and error in console if you did not have orElse() */
+                .map(studentMapper::ToStudentResponseDto)// like : studentMapper.studentResponseDto(studentRepository.findById(studentId));
+                .orElse(null);// at first I get error the I press alt + enter and then click first option
     }
 
     public void deleteStudentObjectById(long studentId) {
         studentRepository.deleteById(studentId);
 
     }
+
+    // my coding
+    public List<StudentResponseDto> getStudentResponseInList() {
+        List<Student> students = studentRepository.findAll();
+        List<StudentResponseDto> studentResponseDtos = new ArrayList<>();
+        for(Student student : students){
+            studentResponseDtos.add(new StudentResponseDto(student.getFirstName(),
+                    student.getLastName(),
+                    student.getEmailId()));
+        }
+        return studentResponseDtos;
+    }
+
+    // YouTuber coding
+    public List<StudentResponseDto> getStudentResponseByUsingStream() {
+        return studentRepository.findAll()
+                .stream() // we make it in to stream ,not list
+                // like studentMapper.studentResponseDto(studentRepository.findAll());
+                .map(studentMapper::ToStudentResponseDto)
+                .collect(Collectors.toList()); // we change it back to the list
+    }
+
+    //**********************************
+    public List<StudentResponseDto> findStudentByFirstName(String name) {
+        return studentRepository.findByFirstName(name)
+                .stream() // we make it in to stream ,not list
+                // like studentMapper.studentResponseDto(studentRepository.findAll());
+                .map(studentMapper::ToStudentResponseDto)
+                .collect(Collectors.toList()); // we change it back to the list
+    }
+    public List<StudentResponseDto> findStudentByLastName(String name) {
+        return studentRepository.findByLastName(name)
+                .stream() // we make it in to stream ,not list
+                // like studentMapper.studentResponseDto(studentRepository.findAll());
+                .map(studentMapper::ToStudentResponseDto)
+                .collect(Collectors.toList()); // we change it back to the list
+    }
+
 }
