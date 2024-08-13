@@ -15,6 +15,8 @@ public class MySpringPluginProjectApplication {
 
 
 	public static void main(String[] args) throws SQLException {
+
+
 		/*
 		var app = new SpringApplication(MySpringPluginProjectApplication.class);
 		app.setDefaultProperties(Collections.singletonMap("spring.profiles.active","dev"));
@@ -32,9 +34,9 @@ public class MySpringPluginProjectApplication {
 		//app.setDefaultProperties(Collections.singletonMap("spring.profiles.active","dev"));
 		var ctx = app.run(args);
 
-		MyFirstService myFirstClass = ctx.getBean(MyFirstService.class);
-		//System.out.println(myFirstClass.tellStory());
- 		System.out.println("\n\n" + myFirstClass.getJavaVersion());
+//		MyFirstService myFirstClass = ctx.getBean(MyFirstService.class);
+//		//System.out.println(myFirstClass.tellStory());
+// 		System.out.println("\n\n" + myFirstClass.getJavaVersion());
 
 //		ConfigProp configProp = ctx.getBean(ConfigProp.class);
 //		configProp.ConfigPropLog();

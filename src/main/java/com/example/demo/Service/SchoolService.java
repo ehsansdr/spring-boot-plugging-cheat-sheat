@@ -2,8 +2,6 @@ package com.example.demo.Service;
 
 import com.example.demo.DTO.SchoolDto;
 import com.example.demo.DTO.SchoolResponseDto;
-import com.example.demo.DTO.StudentDto;
-import com.example.demo.DTO.StudentResponseDto;
 import com.example.demo.Entity.School;
 import com.example.demo.Entity.Student;
 import com.example.demo.Repostiory.SchoolRepository;
@@ -13,7 +11,6 @@ import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -33,7 +30,7 @@ public class SchoolService {
     private SchoolMapper schoolMapper;
 
 
-    public SchoolDto savingSchoolObject(SchoolDto schoolDto) {
+    public SchoolDto create(SchoolDto schoolDto) {
         // this method sent the school after saving that
         schoolRepository.save(schoolMapper.toSchool(schoolDto));
         return schoolDto;
@@ -41,14 +38,14 @@ public class SchoolService {
 
 
     // my coding
-    public List<SchoolResponseDto> getSchoolResponseInList() {
+    public List<SchoolResponseDto> getSchoolResponseInStream() {
         return schoolRepository.findAll()
                 .stream() // we make it in to stream ,not list
                 // like studentMapper.studentResponseDto(studentRepository.findAll());
                 .map(schoolMapper::toSchoolResponseDto) // it will do this for each element ,not all element in parameter of the method
                 .collect(Collectors.toList());
     }
-// it will do thos for each element ,not all element in parameter of the method
+// it will do those for each element ,not all element in parameter of the method
 
     // YouTuber coding
     public List<SchoolResponseDto> getSchoolResponseByUsingStream() {

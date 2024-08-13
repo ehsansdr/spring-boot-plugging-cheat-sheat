@@ -22,10 +22,10 @@ public class SchoolMapper {
 
 
     public School toSchool(SchoolDto schoolDto) {
-        var school = School.builder()
+         return School.builder()
                 .name(schoolDto.name())
                 .build();
-        return school;
+
     }
 
     public SchoolDto toSchoolDto(School school) {

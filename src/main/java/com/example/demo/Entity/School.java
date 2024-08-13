@@ -31,6 +31,4 @@ public class School {
     List<Student> students;
 
 
-
-
 }

@@ -5,6 +5,7 @@ import com.example.demo.DTO.StudentDto;
 import com.example.demo.DTO.StudentResponseDto;
 import com.example.demo.Service.StudentMapper;
 import com.example.demo.Service.StudentService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,7 +20,7 @@ public class StudentController {
     private StudentService studentService;
 
     @PostMapping("/student")
-    public StudentResponseDto savingStudent(@RequestBody StudentDto dto){
+    public StudentResponseDto savingStudent(@Valid @RequestBody StudentDto dto){
         return studentService.saveStudent(dto);
     }
     // my coding
