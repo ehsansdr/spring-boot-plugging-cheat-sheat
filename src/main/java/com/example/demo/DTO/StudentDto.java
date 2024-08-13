@@ -15,13 +15,13 @@ import java.io.Serializable;
 public record StudentDto(
         // todo: do not forget the @Valid before @RequestBody in the controller
 
-        @NotBlank
+        @NotBlank(message = "the first name should not be empty ")
         String firstName,
 
-        @NotBlank
+        @NotBlank(message = "the last name should not be empty ")
         String lastName,
 
-        @Email
+        @Email(message = "you did not type the right E-mail format")
         String emailId,
 
         Long SchoolId) /* implements Serializable */ {
