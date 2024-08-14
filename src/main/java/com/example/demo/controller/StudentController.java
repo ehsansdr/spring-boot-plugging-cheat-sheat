@@ -75,8 +75,8 @@ public class StudentController {
 
         exp.getBindingResult().getAllErrors() // will return the List<ObjectError>
                 .forEach(error -> {
-                    var fieldName = (((FieldError)error).getField());
-                    var errorMessage = error.getDefaultMessage();
+                    var fieldName = (((FieldError)error).getField()); // our exception have this part
+                    var errorMessage = error.getDefaultMessage(); // our exception have this part
                     errors.put(fieldName,errorMessage); // store this to the error map
                 });
 
