@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.Repostiory.StudentRepository;
 import com.example.demo.Entity.Student;
+import com.example.demo.Service.StudentService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -9,9 +10,10 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.junit.jupiter.api.Assertions.*;
-
+@SpringBootTest
 class StudentServiceTest {
 
     // https://www.baeldung.com/mockito-annotations
