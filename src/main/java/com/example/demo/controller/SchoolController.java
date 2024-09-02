@@ -2,17 +2,19 @@ package com.example.demo.controller;
 
 import com.example.demo.Repostiory.SchoolRepository;
 import com.example.demo.Entity.School;
-import com.example.demo.DTO.SchoolDto;
-import com.example.demo.DTO.SchoolResponseDto;
-import com.example.demo.Service.SchoolMapper;
-import com.example.demo.Service.SchoolService;
+import com.example.demo.controller.DTO.mainPorfile.SchoolDto;
+import com.example.demo.controller.DTO.mainPorfile.SchoolResponseDto;
+import com.example.demo.Service.mainPorfile.SchoolMapper;
+import com.example.demo.Service.mainPorfile.SchoolService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+
 public class SchoolController {
 
     @Autowired

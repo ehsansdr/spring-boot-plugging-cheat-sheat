@@ -1,8 +1,8 @@
-package com.example.demo.controller;
+package com.example.demo.Entity.mainPorfile.controller;
 
 import com.example.demo.Repostiory.StudentRepository;
 import com.example.demo.Entity.Student;
-import com.example.demo.Service.StudentService;
+import com.example.demo.Service.mainPorfile.StudentService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;

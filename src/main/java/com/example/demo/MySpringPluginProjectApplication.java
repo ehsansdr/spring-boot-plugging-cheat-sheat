@@ -1,21 +1,35 @@
 package com.example.demo;
 
+import com.example.demo.Anotation.AnnoTesting;
+import com.example.demo.Entity.Student;
 import com.example.demo.Repostiory.SchoolRepository;
+import com.example.demo.Repostiory.StudentRepository;
+import com.example.demo.Service.mainPorfile.StudentMapper;
 import com.example.demo.beans.MyFirstService;
 import com.example.demo.beans.MyFirstClass;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 
 @SpringBootApplication
 public class MySpringPluginProjectApplication {
 	          // |this| |current|
 
-
+	//@SuppressWarnings({"checked", "deprecation"})
 	public static void main(String[] args) throws SQLException {
 
+//		var app = new SpringApplication(MySpringPluginProjectApplication.class);
+//		//app.setDefaultProperties(Collections.singletonMap("spring.profiles.active","dev"));
+//		var ctx = app.run(args);
+
+
+		// @SuppressWarnings({"checked", "deprecation"})
+		AnnoTesting.newMethod();// if we have @SuppressWarnings("deprecation") we will not have warnings
 
 		/*
 		var app = new SpringApplication(MySpringPluginProjectApplication.class);
@@ -30,9 +44,7 @@ public class MySpringPluginProjectApplication {
 		so save spring returning in var like this
 		*/
 
-		var app = new SpringApplication(MySpringPluginProjectApplication.class);
-		//app.setDefaultProperties(Collections.singletonMap("spring.profiles.active","dev"));
-		var ctx = app.run(args);
+
 
 //		MyFirstService myFirstClass = ctx.getBean(MyFirstService.class);
 //		//System.out.println(myFirstClass.tellStory());
@@ -71,5 +83,22 @@ public class MySpringPluginProjectApplication {
 
 		/** if you are doing this way and do not have @component you will get Exception*/
 	}
+
+
+	// it execute without calling it
+//	@Bean // if you need somthing useful at application start up CommandLineRunner will be useful
+//	public CommandLineRunner commandLineRunner (
+//			StudentRepository studentRepository // because od bean this executes and auto wired
+//	){
+//		return args -> {
+//			var student = Student.builder()
+//					.firstName("akbar ali")
+//					.lastName("mamaly")
+//					.emailId(StudentMapper.randomString(6) + "@gmail.com")
+////					.timeCreated(LocalDateTime.now())
+//					.build();
+//			studentRepository.save(student);
+//		};
+//	}
 
 }

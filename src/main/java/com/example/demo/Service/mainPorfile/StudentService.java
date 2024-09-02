@@ -1,11 +1,12 @@
-package com.example.demo.Service;
+package com.example.demo.Service.mainPorfile;
 
-import com.example.demo.DTO.StudentDto;
-import com.example.demo.DTO.StudentResponseDto;
+import com.example.demo.controller.DTO.mainPorfile.StudentDto;
+import com.example.demo.controller.DTO.mainPorfile.StudentResponseDto;
 import com.example.demo.Entity.Student;
 import com.example.demo.Repostiory.SchoolRepository;
 import com.example.demo.Repostiory.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -13,6 +14,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+//@Profile("main")
 public class StudentService {
 
     // todo : do all the business logic and operation to the in the class that related to the service
@@ -29,7 +31,7 @@ public class StudentService {
         return studentRepository.findByFirstNameContaining(name)
                 .stream() // we make it in to stream ,not list
                 // like studentMapper.studentResponseDto(studentRepository.findAll());
-                .map(studentMapper::ToStudentResponseDto)
+                .map(studentMapper::toStudentResponseDto)
                 .collect(Collectors.toList()); // we change it back to the list
     }
 
@@ -56,7 +58,7 @@ public class StudentService {
         var student = studentMapper.toStudent(dto);
         var savedStudent = studentRepository.save(student);
 
-        return studentMapper.ToStudentResponseDto(student);
+        return studentMapper.toStudentResponseDto(student);
     }
 
 
@@ -67,11 +69,14 @@ public class StudentService {
         // we have another option
 
         return studentRepository.findById(studentId)
-                .map(studentMapper::ToStudentResponseDto)// like : studentMapper.studentResponseDto(studentRepository.findById(studentId));
+                .map(studentMapper::toStudentResponseDto)// like : studentMapper.studentResponseDto(studentRepository.findById(studentId));
                 .orElse(null);// at first I get error the I press alt + enter and then click first option
     }
 
     public void deleteStudentObjectById(long studentId) {
+        if(studentRepository.findById(studentId).equals(null)){
+            throw new NullPointerException();
+        }
         studentRepository.deleteById(studentId);
 
     }
@@ -93,7 +98,7 @@ public class StudentService {
         return studentRepository.findAll()
                 .stream() // we make it in to stream ,not list
                 // like studentMapper.studentResponseDto(studentRepository.findAll());
-                .map(studentMapper::ToStudentResponseDto)
+                .map(studentMapper::toStudentResponseDto)
                 .collect(Collectors.toList()); // we change it back to the list
     }
 
@@ -102,15 +107,27 @@ public class StudentService {
         return studentRepository.findByFirstName(name)
                 .stream() // we make it in to stream ,not list
                 // like studentMapper.studentResponseDto(studentRepository.findAll());
-                .map(studentMapper::ToStudentResponseDto)
+                .map(studentMapper::toStudentResponseDto)
                 .collect(Collectors.toList()); // we change it back to the list
     }
     public List<StudentResponseDto> findStudentByLastName(String name) {
         return studentRepository.findByLastName(name)
                 .stream() // we make it in to stream ,not list
                 // like studentMapper.studentResponseDto(studentRepository.findAll());
-                .map(studentMapper::ToStudentResponseDto)
+                .map(studentMapper::toStudentResponseDto)
                 .collect(Collectors.toList()); // we change it back to the list
     }
 
+    public List<StudentResponseDto> findAllStudents() {
+        return studentRepository.findAll()
+                .stream() // we make it in to stream ,not list
+                // like studentMapper.studentResponseDto(studentRepository.findAll());
+                .map(studentMapper::toStudentResponseDto)
+                .collect(Collectors.toList()); // we change it back to the list
+    }
+
+
+    public int number_returning(){
+        return 5;
+    }
 }

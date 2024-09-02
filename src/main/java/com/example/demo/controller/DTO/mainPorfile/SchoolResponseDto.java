@@ -1,4 +1,4 @@
-package com.example.demo.DTO;
+package com.example.demo.controller.DTO.mainPorfile;
 
 import java.util.List;
 

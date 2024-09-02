@@ -1,18 +1,19 @@
-package com.example.demo.Service;
+package com.example.demo.Service.mainPorfile;
 
-import com.example.demo.DTO.SchoolDto;
-import com.example.demo.DTO.SchoolResponseDto;
+import com.example.demo.controller.DTO.mainPorfile.SchoolDto;
+import com.example.demo.controller.DTO.mainPorfile.SchoolResponseDto;
 import com.example.demo.Entity.School;
 import com.example.demo.Entity.Student;
 import com.example.demo.Repostiory.SchoolRepository;
-import org.antlr.v4.runtime.tree.pattern.ParseTreePattern;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
+//@Profile("main")
 public class SchoolMapper {
     // todo : if we need new method for mapping or if we need to return from the type to another type or transformation
 

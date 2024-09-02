@@ -1,12 +1,9 @@
-package com.example.demo.DTO;
+package com.example.demo.controller.DTO.mainPorfile;
 
 
 
-import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-
-import java.io.Serializable;
 
 /**
  * A DTO for the {@link Student} entity

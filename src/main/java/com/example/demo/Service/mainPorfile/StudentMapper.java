@@ -1,14 +1,17 @@
-package com.example.demo.Service;
+package com.example.demo.Service.mainPorfile;
 
-import com.example.demo.DTO.StudentDto;
-import com.example.demo.DTO.StudentResponseDto;
+import com.example.demo.controller.DTO.mainPorfile.StudentDto;
+import com.example.demo.controller.DTO.mainPorfile.StudentResponseDto;
 import com.example.demo.Entity.School;
 import com.example.demo.Entity.Student;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.Random;
 
 @Service
+//@Profile("main")
 public class StudentMapper {
 
     // todo : if we need new method for mapping or if we need to return from the type to another type or transformation
@@ -20,6 +23,7 @@ public class StudentMapper {
         student.setFirstName(dto.firstName());
         student.setLastName(dto.lastName());
         student.setEmailId(StudentMapper.randomString(6) + "@gmail.com");
+//        student.setTimeCreated(LocalDateTime.now());
 
         var school = new School();
         school.setId(dto.SchoolId()); //just the id of the saved school needed
@@ -29,7 +33,7 @@ public class StudentMapper {
     }
 
     // creating the dto for saving data just to show that in the client
-    public StudentResponseDto ToStudentResponseDto(Student student){
+    public StudentResponseDto toStudentResponseDto(Student student){
         return new StudentResponseDto(
                 student.getFirstName(),
                 student.getLastName(),

@@ -4,9 +4,9 @@
 #spring:
 #  profiles:
 #    active:
-#      - dev
-#      - test
-#      - 3th
+#      - main
+##      - jdbc
+##      - 3th
 
 spring:
   datasource:
@@ -14,18 +14,22 @@ spring:
     url: jdbc:postgresql://localhost:5432/ddd #(the name of database)
     username: postgres # (the username that default is "postgres")
     password: postgres # (the password that i set is "postgres")
-  jpa:
-    hibernate:
-      ddl-auto:  update # create-drop
-    # by defulat this is false
-    show-sql: true    # when run or hibernate execute command or query  it will be displayed in your ide or in the logs of your application
-    properties:
+    jpa:
       hibernate:
-      format_sql: true
-    database: postgresql
-    database-platform: org.hibernate.dialect.PostgreSQLDialect
-### The following 3 profiles are active: "dev", "fff", "ggg" even we do not create them
+        ddl-auto:   update #create-drop #
+      # by defulat this is false
+      show-sql: true    # when run or hibernate execute command or query  it will be displayed in your ide or in the logs of your application
+      properties:
+        hibernate:
+        format_sql: true
+      database: postgresql
+      database-platform: org.hibernate.dialect.PostgreSQLDialect
 
+
+# todo: if you want to have many data base setting in diffrent profile do not have then in application.yml place them in profile file, no setting in here
+
+# todo: if you want to create sata base in yml use this : createDatabaseIfNotExist=true (it will create without goring to another app)
+# url: jdbc:mysql://localhost:3306/createdDataBase?createDatabaseIfNotExist=true
 
 
 ##########

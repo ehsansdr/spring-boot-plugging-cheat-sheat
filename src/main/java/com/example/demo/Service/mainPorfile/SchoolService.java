@@ -1,12 +1,13 @@
-package com.example.demo.Service;
+package com.example.demo.Service.mainPorfile;
 
-import com.example.demo.DTO.SchoolDto;
-import com.example.demo.DTO.SchoolResponseDto;
+import com.example.demo.controller.DTO.mainPorfile.SchoolDto;
+import com.example.demo.controller.DTO.mainPorfile.SchoolResponseDto;
 import com.example.demo.Entity.School;
 import com.example.demo.Entity.Student;
 import com.example.demo.Repostiory.SchoolRepository;
 import com.example.demo.Repostiory.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -15,6 +16,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+//@Profile("main")
 public class SchoolService {
 
     // todo : do all the business logic and operation to the in the class that related to the service
