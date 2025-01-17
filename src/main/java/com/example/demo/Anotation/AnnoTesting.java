@@ -27,6 +27,7 @@ public class AnnoTesting {
         } catch (NoSuchMethodException e) {
             System.out.println(e + "\nbe care full about the method name");
         }
+    }
         public static void main(String[] args) {
 
             AnnoTesting annoTesting = new AnnoTesting();
@@ -57,7 +58,6 @@ public class AnnoTesting {
 
 //		SpringApplication.run(DemoApplication.class, args);
         }
-    }
     public static void execution() {
 
         AnnoTesting annoTesting = new AnnoTesting();

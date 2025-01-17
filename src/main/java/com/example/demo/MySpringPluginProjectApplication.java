@@ -23,13 +23,13 @@ public class MySpringPluginProjectApplication {
 	//@SuppressWarnings({"checked", "deprecation"})
 	public static void main(String[] args) throws SQLException {
 
-//		var app = new SpringApplication(MySpringPluginProjectApplication.class);
-//		//app.setDefaultProperties(Collections.singletonMap("spring.profiles.active","dev"));
-//		var ctx = app.run(args);
+		var app = new SpringApplication(MySpringPluginProjectApplication.class);
+		//app.setDefaultProperties(Collections.singletonMap("spring.profiles.active","dev"));
+		var ctx = app.run(args);
 
 
 		// @SuppressWarnings({"checked", "deprecation"})
-		AnnoTesting.newMethod();// if we have @SuppressWarnings("deprecation") we will not have warnings
+		// AnnoTesting.newMethod();// if we have @SuppressWarnings("deprecation") we will not have warnings
 
 		/*
 		var app = new SpringApplication(MySpringPluginProjectApplication.class);
