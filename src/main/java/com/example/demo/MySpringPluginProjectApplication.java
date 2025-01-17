@@ -27,6 +27,7 @@ public class MySpringPluginProjectApplication {
 		//app.setDefaultProperties(Collections.singletonMap("spring.profiles.active","dev"));
 		var ctx = app.run(args);
 
+		// hi from ssh key
 
 		// @SuppressWarnings({"checked", "deprecation"})
 		// AnnoTesting.newMethod();// if we have @SuppressWarnings("deprecation") we will not have warnings
