@@ -16,14 +16,16 @@ import java.sql.SQLException;
 @RestController
 public class MySpringPluginProjectApplication {
 	public static void main(String[] args) throws SQLException {
-		// SpringApplication.run(MySpringPluginProjectApplication.class, args);
+		//SpringApplication.run(MySpringPluginProjectApplication.class, args);
 
+
+		// bean creating
 		var ctx = SpringApplication.run(MySpringPluginProjectApplication.class, args);
 		MyFirstService myFirstService = ctx.getBean(MyFirstService.class);
-		//System.out.println("myFirstService ======> " +  myFirstService.tellAStory() );
-		System.out.println("java version ======> " +  myFirstService.getJavaVersion() );
-		System.out.println("java version ======> " +  myFirstService.getOSName() );
-		System.out.println("java version ======> " +  myFirstService.readprop() );
+		System.out.println(myFirstService.readenv());
+
+
+
 	}
 
 
