@@ -10,6 +10,8 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.sql.SQLException;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.logging.Logger;
 
 
@@ -19,9 +21,13 @@ public class MySpringPluginProjectApplication {
 	public static void main(String[] args) throws SQLException {
 		//SpringApplication.run(MySpringPluginProjectApplication.class, args);
 
+		// defining profile by code
+		var app = new SpringApplication(MySpringPluginProjectApplication.class);
+		app.setDefaultProperties(Collections.singletonMap("spring.profiles.active", "dev"));
+		var ctx = app.run(args);
 
 		// bean creating
-		var ctx = SpringApplication.run(MySpringPluginProjectApplication.class, args);
+		// var ctx = SpringApplication.run(MySpringPluginProjectApplication.class, args);
 		MyFirstService myFirstService = ctx.getBean(MyFirstService.class);
 		System.out.println("readenv :" + myFirstService.readenv());
 		System.out.println("server port : " + myFirstService.ServerPort());
