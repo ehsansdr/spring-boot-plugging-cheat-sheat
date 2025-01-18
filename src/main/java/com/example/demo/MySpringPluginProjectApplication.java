@@ -20,7 +20,10 @@ public class MySpringPluginProjectApplication {
 
 		var ctx = SpringApplication.run(MySpringPluginProjectApplication.class, args);
 		MyFirstService myFirstService = ctx.getBean(MyFirstService.class);
-		System.out.println("myFirstService ======> " +  myFirstService.tellAStory() );
+		//System.out.println("myFirstService ======> " +  myFirstService.tellAStory() );
+		System.out.println("java version ======> " +  myFirstService.getJavaVersion() );
+		System.out.println("java version ======> " +  myFirstService.getOSName() );
+		System.out.println("java version ======> " +  myFirstService.readprop() );
 	}
 
 
