@@ -10,6 +10,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.sql.SQLException;
+import java.util.logging.Logger;
 
 
 @SpringBootApplication
@@ -22,8 +23,12 @@ public class MySpringPluginProjectApplication {
 		// bean creating
 		var ctx = SpringApplication.run(MySpringPluginProjectApplication.class, args);
 		MyFirstService myFirstService = ctx.getBean(MyFirstService.class);
-		System.out.println(myFirstService.readenv());
-
+		System.out.println("readenv :" + myFirstService.readenv());
+		System.out.println("server port : " + myFirstService.ServerPort());
+		System.out.println("fileSep : " + myFirstService.fileSep());
+		System.out.println("os arc : " + myFirstService.osArch());
+		System.out.println("os version : " + myFirstService.osVersion());
+		//System.getProperties().forEach((k, v) -> LOG.info("{} -> {}", k, v));
 
 
 	}

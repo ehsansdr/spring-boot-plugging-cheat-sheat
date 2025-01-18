@@ -40,6 +40,25 @@ public class MyFirstService {
     public String readprop(){
         return environment.getProperty("mv.custome.properties");
     }
+    public String ServerPort(){
+        return environment.getProperty("local.server.port"); // without creating this in .prperties files
+    }
+
+    public String osArch(){
+        return environment.getProperty("os.arch"); // without creating this in .prperties files
+    }
+
+    public String osVersion(){
+        return environment.getProperty("os.version"); // without creating this in .prperties files
+    }
+
+    public String fileSep(){
+        return environment.getProperty("file.separator"); // without creating this in .prperties files
+    }
+
+    public String projectName(){
+        return environment.getProperty("spring.application.name"); // without creating this in .prperties files
+    }
 
     public String readenv(){
         return env;
