@@ -1,14 +1,11 @@
-package com.example.demo;
+package com.example.demo.beans;
 
 
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.Profile;
 
 @Configuration
-@Profile("test")
 public class ApplicationConfig {
 
     @Bean
