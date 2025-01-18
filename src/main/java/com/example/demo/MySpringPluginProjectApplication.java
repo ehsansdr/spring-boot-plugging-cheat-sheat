@@ -29,6 +29,7 @@ public class MySpringPluginProjectApplication {
 		// bean creating
 		// var ctx = SpringApplication.run(MySpringPluginProjectApplication.class, args);
 		MyFirstService myFirstService = ctx.getBean(MyFirstService.class);
+		System.out.println("MyFirstService: " + myFirstService.tellAStory());
 		System.out.println("readenv :" + myFirstService.readenv());
 		System.out.println("server port : " + myFirstService.ServerPort());
 		System.out.println("fileSep : " + myFirstService.fileSep());
