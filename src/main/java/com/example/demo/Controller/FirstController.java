@@ -1,11 +1,15 @@
 package com.example.demo.Controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Logger;
 
 @RestController
@@ -65,6 +69,53 @@ public class FirstController {
         }
     }
 
+    @GetMapping("/is-success-2")
+    public ResponseEntity<String> sayHello11(@RequestBody Boolean isSucess) {
+        LOGGER.info("FirstController.class sayHello11() GET /is-success-2");
 
+        if (isSucess) {
+            return new ResponseEntity<>("Request is successful", HttpStatus.CREATED);
+        } else {
+            return new ResponseEntity<>("Request is not successful", HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @PostMapping("/receiveJson")
+    public String receiveJsonData(@RequestBody String json) throws IOException {
+        final ObjectMapper objectMapper = new ObjectMapper();
+
+        /* -- allowed json
+            {
+              "name": "John Doe",
+              "age": 30
+            }
+         */
+
+        /* -- not allowed json
+            alo
+         */
+
+        // Parse the JSON string into a Map
+        Map<String, Object> jsonData = objectMapper.readValue(json, HashMap.class);
+
+        // Access data from the map
+        String name = (String) jsonData.get("name"); // the part in left side of the json
+        int age = (Integer) jsonData.get("age"); // the part in left side of the json
+        int age2 = (Integer) jsonData.get("age2"); // the part in left side of the json
+        /*
+        {
+            "name": "John Doe",
+                "age": 30 ,
+                "age2" : 58
+        }
+        */
+        // if oy sent non of them but want ti extract data from them in java you will get
+        // exceptipn
+
+        // Process the data (example)
+        String response = "Received data: name=" + name + ", age=" + age + ", age2=" + age2;
+
+        return response;
+    }
 
 }
