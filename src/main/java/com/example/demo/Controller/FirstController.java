@@ -45,6 +45,11 @@ public class FirstController {
         return "request accepted and the message is " + order.toString();
     }
 
+    @PostMapping("/pst-order-record")
+    public String postRecord(@RequestBody OrderRecord order) {
+        return "request accepted and the order is " + order.toString();
+    }
+
     @GetMapping("/responce-entity")
     public ResponseEntity<String> sayHello5() {
         return new ResponseEntity<>("Hello form y first controller", HttpStatus.CREATED);
@@ -67,6 +72,19 @@ public class FirstController {
         } else {
             return new ResponseEntity<>("Request is not successful", HttpStatus.BAD_REQUEST);
         }
+    }
+
+    @GetMapping("/hello/{userName}")
+    public String pathVar(@PathVariable String userName) {
+        LOGGER.info("FirstController.class pathVar() GET /pathVar");
+        return "path varible is this : " + userName;
+    }
+    @GetMapping("/send_param")
+    public String paramVar(
+            @RequestParam("user-name") String userName,
+            @RequestParam("user-last-name") String userLastName) {
+        LOGGER.info("FirstController.class pathVar() GET /paramVar");
+        return "path varible is this : " + userName + " " + userLastName;
     }
 
     @GetMapping("/is-success-2")
