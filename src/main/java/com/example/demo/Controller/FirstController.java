@@ -1,7 +1,12 @@
 package com.example.demo.Controller;
 
+import com.example.demo.DTO.StudentDTO;
+import com.example.demo.Entity.School;
+import com.example.demo.Entity.Student;
+import com.example.demo.Repositry.SchoolRepository;
+import com.example.demo.Repositry.StudentRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.springframework.boot.autoconfigure.security.SecurityProperties;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -9,15 +14,22 @@ import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.NoSuchElementException;
 import java.util.logging.Logger;
 
 @RestController
 public class FirstController {
 
-
+    private StudentRepository studentRepository;
+    private SchoolRepository schoolrepository;
     private static final Logger LOGGER = Logger.getLogger(FirstController.class.getName());
 
+    public FirstController(StudentRepository repository,SchoolRepository schoolrepository) {
+        this.studentRepository = repository;
+        this.schoolrepository = schoolrepository;
+    }
 
     @GetMapping("/hello")
     public String sayHello() {
@@ -86,6 +98,89 @@ public class FirstController {
         LOGGER.info("FirstController.class pathVar() GET /paramVar");
         return "path varible is this : " + userName + " " + userLastName;
     }
+
+    @PostMapping("/save-student")
+    public Student saveStudent(@RequestBody Student student) {
+        return studentRepository.save(student);
+    }
+
+    @GetMapping("/student")
+    public List<Student> findAll() {
+        return studentRepository.findAll();
+    }
+
+    @GetMapping("/student-by-id")
+    public Student findStudentById(@RequestParam int id) {
+        return studentRepository.findById(id)
+                .orElse(new Student());
+    }
+
+    @GetMapping("/student-by-name")
+    public List<Student> findStudentByFirstName(@RequestParam String letter) {
+        return studentRepository.findAllByFirstNameContaining(letter);
+    }
+
+    @GetMapping("/delete-student")
+    public void deleteStudentByFirstName(@RequestParam int id) {
+        studentRepository.deleteById(id);
+    }
+
+    @PostMapping("/save-student-dto")
+    public Student saveStudentDTO(@RequestBody StudentDTO studentdto) {
+        Student student = new Student();
+
+        student.setFirstName(studentdto.firstName());
+        student.setLastName(studentdto.lastName());
+        student.setEmail(studentdto.email());
+        student.setAge(studentdto.age());
+
+        School school = schoolrepository.findById(studentdto.schoolId()).get();
+        student.setSchool(school);
+
+        return studentRepository.save(student);
+    }
+
+    // when the upper method get the id of not existed school it sent this exception
+    @ExceptionHandler(NoSuchElementException.class)
+    public ResponseEntity<String> handleNoSuchElementException(NoSuchElementException ex) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Resource not found: " + ex.getMessage());
+    }
+
+    @PostMapping("/save-student-dto-2")
+    public Student saveStudentDTO2(@RequestBody StudentDTO studentdto) {
+        Student student = getStudent(studentdto);
+
+        return studentRepository.save(student);
+    }
+
+    @ExceptionHandler(DataIntegrityViolationException.class)
+    public ResponseEntity<String> handleDataIntegrityViolationException(DataIntegrityViolationException ex) {
+        System.out.println(ex);
+        String errorMessage = "Data integrity violation occurred.";
+
+        // you can set anouther if to transfer anouthe error essge by like
+
+        if (ex.getMessage().contains("is not present in table \"school\"")) {
+            errorMessage = " your given school id is not present in table \"school\"";
+        }
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorMessage);
+    }
+
+    private static Student getStudent(StudentDTO studentdto) {
+        Student student = new Student();
+
+        student.setFirstName(studentdto.firstName());
+        student.setLastName(studentdto.lastName());
+        student.setEmail(studentdto.email());
+        student.setAge(studentdto.age());
+
+        var school = new School();
+        school.setId(studentdto.schoolId());
+
+        student.setSchool(school);
+        return student;
+    }
+
 
     @GetMapping("/is-success-2")
     public ResponseEntity<String> sayHello11(@RequestBody Boolean isSucess) {

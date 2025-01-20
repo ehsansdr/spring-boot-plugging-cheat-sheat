@@ -1,0 +1,22 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/sprintDB
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+    platform: postgres
+
+  # JPA/Hibernate Configuration (optional)
+  jpa:
+    hibernate:
+      ddl-auto: update  # or 'create', 'create-drop', 'validate'
+    show-sql: true       # Optional, to show SQL queries in the console
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        naming:
+          physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+          implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
