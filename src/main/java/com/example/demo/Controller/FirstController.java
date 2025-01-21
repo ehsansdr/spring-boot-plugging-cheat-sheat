@@ -6,6 +6,7 @@ import com.example.demo.Entity.School;
 import com.example.demo.Entity.Student;
 import com.example.demo.Repositry.SchoolRepository;
 import com.example.demo.Repositry.StudentRepository;
+import com.example.demo.Service.StudentService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpHeaders;
@@ -23,13 +24,15 @@ import java.util.logging.Logger;
 @RestController
 public class FirstController {
 
-    private StudentRepository studentRepository;
-    private SchoolRepository schoolrepository;
+
+    private StudentMapper studentMapper;
+    
+    private StudentService studentService;
+    
     private static final Logger LOGGER = Logger.getLogger(FirstController.class.getName());
 
-    public FirstController(StudentRepository repository,SchoolRepository schoolrepository) {
-        this.studentRepository = repository;
-        this.schoolrepository = schoolrepository;
+    public FirstController(StudentMapper studentMapper) {
+        this.studentMapper = studentMapper;
     }
 
     @GetMapping("/hello")
@@ -102,44 +105,52 @@ public class FirstController {
 
     @PostMapping("/save-student")
     public Student saveStudent(@RequestBody Student student) {
-        return studentRepository.save(student);
+        return studentService.save(student);
     }
+    
 
     @GetMapping("/student")
     public List<Student> findAll() {
-        return studentRepository.findAll();
+        return studentService.getStudents();
     }
+
+    
 
     @GetMapping("/student-by-id")
     public Student findStudentById(@RequestParam int id) {
-        return studentRepository.findById(id)
-                .orElse(new Student());
+        return studentService.getStudent(id);
     }
+
+    
 
     @GetMapping("/student-by-name")
     public List<Student> findStudentByFirstName(@RequestParam String letter) {
-        return studentRepository.findAllByFirstNameContaining(letter);
+        return studentService.getStudents(letter);
     }
+
+    
 
     @GetMapping("/delete-student")
     public void deleteStudentByFirstName(@RequestParam int id) {
-        studentRepository.deleteById(id);
+        studentService.deleteById(id);
     }
 
-    @PostMapping("/save-student-dto")
-    public Student saveStudentDTO(@RequestBody StudentDTO studentdto) {
-        Student student = new Student();
 
-        student.setFirstName(studentdto.firstName());
-        student.setLastName(studentdto.lastName());
-        student.setEmail(studentdto.email());
-        student.setAge(studentdto.age());
 
-        School school = schoolrepository.findById(studentdto.schoolId()).get();
-        student.setSchool(school);
-
-        return studentRepository.save(student);
-    }
+//    @PostMapping("/save-student-dto")
+//    public Student saveStudentDTO(@RequestBody StudentDTO studentdto) {
+//        Student student = new Student();
+//
+//        student.setFirstName(studentdto.firstName());
+//        student.setLastName(studentdto.lastName());
+//        student.setEmail(studentdto.email());
+//        student.setAge(studentdto.age());
+//
+//        School school = schoolrepository.findById(studentdto.schoolId()).get();
+//        student.setSchool(school);
+//
+//        return studentRepository.save(student);
+//    }
 
     // when the upper method get the id of not existed school it sent this exception
     @ExceptionHandler(NoSuchElementException.class)
@@ -149,10 +160,9 @@ public class FirstController {
 
     @PostMapping("/save-student-dto-2")
     public StudentResposeDTO saveStudentDTO2(@RequestBody StudentDTO studentdto) {
-        Student student = getStudent(studentdto);
-        studentRepository.save(student);
-        return getStudentDTO(student);
+        return studentService.getStudentResposeDTO(studentdto);
     }
+
 
     @ExceptionHandler(DataIntegrityViolationException.class)
     public ResponseEntity<String> handleDataIntegrityViolationException(DataIntegrityViolationException ex) {
@@ -166,38 +176,15 @@ public class FirstController {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorMessage);
     }
 
-    private static Student getStudent(StudentDTO studentdto) {
-        Student student = new Student();
-
-        student.setFirstName(studentdto.firstName());
-        student.setLastName(studentdto.lastName());
-        student.setEmail(studentdto.email());
-        student.setAge(studentdto.age());
-
-        var school = new School();
-        school.setId(studentdto.schoolId());
-
-        student.setSchool(school);
-        return student;
-    }
-
-    private StudentResposeDTO getStudentDTO(Student student) {
-        return new StudentResposeDTO(student.getFirstName(),
-                student.getLastName(),
-                student.getEmail());
-    }
 
 
-    @GetMapping("/is-success-2")
-    public ResponseEntity<String> sayHello11(@RequestBody Boolean isSucess) {
-        LOGGER.info("FirstController.class sayHello11() GET /is-success-2");
 
-        if (isSucess) {
-            return new ResponseEntity<>("Request is successful", HttpStatus.CREATED);
-        } else {
-            return new ResponseEntity<>("Request is not successful", HttpStatus.BAD_REQUEST);
-        }
-    }
+//    @GetMapping("/is-success-2")
+//    public ResponseEntity<String> sayHello11(@RequestBody Boolean isSucess) {
+//        return getStringResponseEntity(isSucess);
+//    }
+
+    
 
     @PostMapping("/receiveJson")
     public String receiveJsonData(@RequestBody String json) throws IOException {

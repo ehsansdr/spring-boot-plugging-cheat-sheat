@@ -1,6 +1,5 @@
 package com.example.demo.Entity;
 
-import com.example.demo.Controller.StudentProfile;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
