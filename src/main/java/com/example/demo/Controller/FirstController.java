@@ -1,6 +1,7 @@
 package com.example.demo.Controller;
 
 import com.example.demo.DTO.StudentDTO;
+import com.example.demo.DTO.StudentResposeDTO;
 import com.example.demo.Entity.School;
 import com.example.demo.Entity.Student;
 import com.example.demo.Repositry.SchoolRepository;
@@ -147,15 +148,14 @@ public class FirstController {
     }
 
     @PostMapping("/save-student-dto-2")
-    public Student saveStudentDTO2(@RequestBody StudentDTO studentdto) {
+    public StudentResposeDTO saveStudentDTO2(@RequestBody StudentDTO studentdto) {
         Student student = getStudent(studentdto);
-
-        return studentRepository.save(student);
+        studentRepository.save(student);
+        return getStudentDTO(student);
     }
 
     @ExceptionHandler(DataIntegrityViolationException.class)
     public ResponseEntity<String> handleDataIntegrityViolationException(DataIntegrityViolationException ex) {
-        System.out.println(ex);
         String errorMessage = "Data integrity violation occurred.";
 
         // you can set anouther if to transfer anouthe error essge by like
@@ -179,6 +179,12 @@ public class FirstController {
 
         student.setSchool(school);
         return student;
+    }
+
+    private StudentResposeDTO getStudentDTO(Student student) {
+        return new StudentResposeDTO(student.getFirstName(),
+                student.getLastName(),
+                student.getEmail());
     }
 
 
