@@ -63,5 +63,8 @@ public class StudentService {
         studentRepository.deleteById(id);
     }
 
+    public Integer gg(){
+        return Integer.valueOf(1);
+    }
 
 }

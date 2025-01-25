@@ -52,5 +52,18 @@ class StudentMapperTest {
     public void  throwException() {
         throw new NullPointerException();
     }
+    public void  throwRuntimeException() {
+        throw new RuntimeException();
+    }
+
+    @Test
+    public void  throwException2() {
+        assertThrows(RuntimeException.class, () -> throwRuntimeException());
+    }
+
+    @Test
+    public void  assertWithMessag() {
+        assertEquals(5,8,"no  they are not  equal"); // when test fail it shows the massage
+    }
 
 }
