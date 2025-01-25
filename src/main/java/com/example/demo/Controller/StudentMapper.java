@@ -16,7 +16,7 @@ public class StudentMapper {
                 student.getEmail());
     }
 
-    public  Student getStudent(StudentDTO studentdto) {
+    public  Student toStudent(StudentDTO studentdto) {
         Student student = new Student();
 
         student.setFirstName(studentdto.firstName());
@@ -30,4 +30,6 @@ public class StudentMapper {
         student.setSchool(school);
         return student;
     }
+
+
 }

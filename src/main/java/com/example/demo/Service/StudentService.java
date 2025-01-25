@@ -1,6 +1,5 @@
 package com.example.demo.Service;
 
-import com.example.demo.Controller.FirstController;
 import com.example.demo.Controller.StudentMapper;
 import com.example.demo.DTO.StudentDTO;
 import com.example.demo.DTO.StudentResposeDTO;
@@ -29,7 +28,7 @@ public class StudentService {
     }
 
     public StudentResposeDTO getStudentResposeDTO(StudentDTO studentdto) {
-        Student student = studentMapper.getStudent(studentdto);
+        Student student = studentMapper.toStudent(studentdto);
         studentRepository.save(student);
         return studentMapper.getStudentDTO(student);
     }

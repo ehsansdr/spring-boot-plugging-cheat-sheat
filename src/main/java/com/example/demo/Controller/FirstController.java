@@ -15,7 +15,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -113,7 +112,7 @@ public class FirstController {
 
     @PostMapping("/save-student-dto")
     public Student saveStudent(@Valid @RequestBody StudentDTO studentDTO) {
-        return studentService.save(studentMapper.getStudent(studentDTO));
+        return studentService.save(studentMapper.toStudent(studentDTO));
     }
     
 
@@ -244,5 +243,6 @@ public class FirstController {
 
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errors);
     }
+
 
 }
