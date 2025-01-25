@@ -16,7 +16,7 @@ public class StudentMapper {
                 student.getEmail());
     }
 
-    public static Student getStudent(StudentDTO studentdto) {
+    public  Student getStudent(StudentDTO studentdto) {
         Student student = new Student();
 
         student.setFirstName(studentdto.firstName());

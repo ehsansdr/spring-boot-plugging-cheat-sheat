@@ -16,9 +16,13 @@ import java.util.stream.Collectors;
 public class SchoolController {
 
     private final SchoolRepository schoolRepository;
+    private final SchoolService schoolService;
+    private final SchoolMapper schoolMapper;
 
-    public SchoolController(SchoolRepository repository) {
+    public SchoolController(SchoolRepository repository,SchoolService schoolService, SchoolMapper mapper) {
         this.schoolRepository = repository;
+        this.schoolService = schoolService;
+        this.schoolMapper = mapper;
     }
 
     @GetMapping("/schools")
@@ -33,32 +37,25 @@ public class SchoolController {
 
     @GetMapping("/school-dto")
     public List<SchoolDTO> getSchools() {
-        List<School> schools = schoolRepository.findAll();
-        List<SchoolDTO> schoolDTOS = new ArrayList<>();
-        for (School school : schools) {
-            schoolDTOS.add(toSchoolDto(school));
-        }
-
-        return schoolDTOS;
+        return schoolMapper.getSchoolDTOS();
     }
+
+
+
+
     @GetMapping("/school-dto-stream")
     public List<SchoolDTO> getSchoolsByStream() {
-        return schoolRepository.findAll().stream()
-                .map(this::toSchoolDto)
-                .collect(Collectors.toList());
+        return schoolService.getSchoolDTOS();
     }
 
-    private SchoolDTO toSchoolDto(School school) {
-        return new SchoolDTO(school.getName());
-    }
+
 
 
     @PostMapping("/save-school-dto")
     public SchoolDTO saveSchool(@RequestBody SchoolDTO schoolDTO) {
-        School school = new School();
-        school.setName(schoolDTO.name());
-        school = schoolRepository.save(school);
-        return schoolDTO;
+        return schoolService.saveSchoolByDto(schoolDTO);
     }
+
+
 
 }

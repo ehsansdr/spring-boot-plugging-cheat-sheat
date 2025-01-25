@@ -2,17 +2,20 @@ package com.example.demo.Controller;
 
 import com.example.demo.DTO.StudentDTO;
 import com.example.demo.DTO.StudentResposeDTO;
-import com.example.demo.Entity.School;
+import com.example.demo.Entity.Order;
+import com.example.demo.DTO.OrderRecord;
 import com.example.demo.Entity.Student;
-import com.example.demo.Repositry.SchoolRepository;
-import com.example.demo.Repositry.StudentRepository;
 import com.example.demo.Service.StudentService;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import jakarta.validation.Valid;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -106,6 +109,11 @@ public class FirstController {
     @PostMapping("/save-student")
     public Student saveStudent(@RequestBody Student student) {
         return studentService.save(student);
+    }
+
+    @PostMapping("/save-student-dto")
+    public Student saveStudent(@Valid @RequestBody StudentDTO studentDTO) {
+        return studentService.save(studentMapper.getStudent(studentDTO));
     }
     
 
@@ -222,6 +230,19 @@ public class FirstController {
         String response = "Received data: name=" + name + ", age=" + age + ", age2=" + age2;
 
         return response;
+    }
+
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResponseEntity<?> handleMethodArgumentNotValidException(MethodArgumentNotValidException ex){
+        var errors = new HashMap<String,String>();
+        List<FieldError> fieldErrors = ex.getBindingResult().getFieldErrors();
+        for (FieldError error : fieldErrors) {
+            String field = error.getField();
+            String message = error.getDefaultMessage();
+            errors.put(field, message);
+        }
+
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errors);
     }
 
 }
